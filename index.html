@@ -1,526 +1,735 @@
-<html lang="en" class="scroll-smooth"><head><meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CHAPPYNEURO | Advanced Neural Interface</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<script>
-tailwind.config = {
-theme: {
-extend: {
-fontFamily: {
-sans: ['"Geist"', 'sans-serif'],
-serif: ['"Playfair Display"', 'serif'],
-mono: ['"Space Mono"', 'monospace'],
-},
-colors: {
-forest: {
-950: '#050a08',
-900: '#0f1c16',
-800: '#162b22',
-},
-copper: {
-400: '#2dd4bf',
-500: '#14b8a6',
-900: '#134e4a',
-},
-bronze: {
-400: '#c2a58d',
-500: '#a3846b',
-}
-},
-backgroundImage: {
-'noise': "url('data:image/svg+xml,%3Csvg viewBox=\"0 0 200 200\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cfilter id=\"noiseFilter\"%3E%3CfeTurbulence type=\"fractalNoise\" baseFrequency=\"0.8\" numOctaves=\"3\" stitchTiles=\"stitch\"/%3E%3C/filter%3E%3Crect width=\"100%25\" height=\"100%25\" filter=\"url(%23noiseFilter)\"/%3E%3C/svg%3E')",
-'grid-pattern': "linear-gradient(to right, #ffffff05 1px, transparent 1px), linear-gradient(to bottom, #ffffff05 1px, transparent 1px)"
-}
-}
-}
-}
-</script>
-<style>
-/* Base & Typography */
-body { cursor: default; }
-.font-geist { font-family: 'Geist', sans-serif; }
-/* Animations */
-.reveal {
-opacity: 0;
-transform: translateY(20px);
-transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.reveal.active {
-opacity: 1;
-transform: translateY(0);
-}
-/* Glassmorphism */
-.glass-panel {
-background: rgba(255, 255, 255, 0.02);
-backdrop-filter: blur(20px);
--webkit-backdrop-filter: blur(20px);
-border: 1px solid rgba(255, 255, 255, 0.05);
-}
-/* Custom Scrollbar */
-::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: #050a08; }
-::-webkit-scrollbar-thumb { background: #1f2937; border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: #374151; }
-/* Pan Animation for Hero */
-@keyframes slowPan {
-0% { transform: scale(1.05); }
-100% { transform: scale(1.1); }
-}
-.animate-pan { animation: slowPan 20s infinite alternate ease-in-out; }
-/* Text Effects */
-.text-outline {
--webkit-text-stroke: 1px rgba(255,255,255,0.15);
-color: transparent;
-}
-/* Utility */
-.lang-hidden { display: none; }
-</style>
-<!-- Fonts -->
-<meta name="disabled-font-classes" content="font-space-mono,font-roboto,font-montserrat,font-poppins,font-playfair,font-instrument-serif,font-merriweather,font-bricolage,font-jakarta,font-manrope,font-space-grotesk,font-work-sans,font-pt-serif,font-geist-mono,font-quicksand,font-nunito,font-newsreader,font-google-sans-flex,font-oswald,font-dm-sans">
-<style id="aura-editor-visibility-style">
-.invisible { visibility: hidden !important; }
-</style><link id="all-fonts-link-font-geist" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-geist">.font-geist { font-family: 'Geist', sans-serif !important; }</style></head>
-<body class="bg-forest-950 text-stone-300 antialiased overflow-x-hidden font-sans selection:bg-copper-400 selection:text-forest-950">
-    
-    <!-- Background Grid -->
-    <div class="fixed inset-0 bg-[size:40px_40px] bg-grid-pattern opacity-20 pointer-events-none z-0"></div>
-    <div class="fixed inset-0 bg-noise opacity-[0.03] mix-blend-overlay pointer-events-none z-50"></div>
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KVDC2PSM');</script>
+<!-- End Google Tag Manager -->
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChappyNeuro | Digital Mental Health</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Icons -->
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        /* Language Toggle Classes */
+        .show-kr { display: none; }
+        .inline-kr { display: none; }
+        body.lang-kr .show-kr { display: block; }
+        body.lang-kr .show-en { display: none; }
+        body.lang-kr .inline-kr { display: inline; }
+        body.lang-kr .inline-en { display: none; }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #FAFAFA; }
+        ::-webkit-scrollbar-thumb { background: #E5E7EB; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #D1D5DB; }
+
+        /* Scroll Animations */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease-out;
+        }
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .delay-100 { transition-delay: 0.1s; }
+        .delay-200 { transition-delay: 0.2s; }
+        .delay-300 { transition-delay: 0.3s; }
+
+        /* Glassmorphism */
+        .glass {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0,0,0,0.03);
+        }
+        
+        /* Hero Slider */
+        .hero-slide {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            z-index: 0;
+        }
+        .hero-slide.active {
+            opacity: 1;
+            z-index: 10;
+        }
+
+        /* Partner Logo Slider */
+        .partner-track {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+            width: max-content;
+            animation: partner-scroll 25s linear infinite;
+        }
+        .partner-slider:hover .partner-track {
+            animation-play-state: paused;
+        }
+        @keyframes partner-scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: { 50: '#F0F5FF', 100: '#E0EFFF', 500: '#3B82F6', 900: '#1E3A8A' },
+                        surface: '#FAFAFA'
+                    },
+                    letterSpacing: { tighter: '-0.04em', tight: '-0.02em' }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-surface text-gray-600 antialiased selection:bg-brand-100 selection:text-brand-900 lang-en">
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KVDC2PSM"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 
     <!-- Navigation -->
-    <nav class="fixed z-50 md:px-12 flex transition-all duration-300 border-white/5 border-b pt-4 pr-6 pb-4 pl-6 top-0 right-0 left-0 backdrop-blur-md items-center justify-between" id="navbar">
-        <!-- Logo Image -->
-        <a href="#" class="group flex items-center gap-2 z-50 relative">
-            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/200846ed-9100-41a8-a2b6-8a715ceeeded_320w.png" alt="CHAPPYNEURO Logo" class="md:h-10 filter contrast-200 h-8 object-contain invert brightness-200" style="opacity: 0.9;">
-        </a>
-        
-        <!-- Desktop Menu -->
-        <div class="hidden md:flex gap-8 font-medium text-sm text-stone-400 absolute left-1/2 -translate-x-1/2 z-50">
-            <a href="#intro" class="hover:text-white transition-colors"><span class="lang-en font-geist">Home</span><span class="lang-ko lang-hidden font-geist">소개</span></a>
-            <a href="#solution" class="hover:text-white transition-colors"><span class="lang-en font-geist">Solution</span><span class="lang-ko lang-hidden font-geist">솔루션</span></a>
-            <a href="#effect" class="hover:text-white transition-colors"><span class="lang-en font-geist">Effect</span><span class="lang-ko lang-hidden font-geist">효과</span></a>
-            <a href="#team" class="hover:text-white transition-colors"><span class="lang-en font-geist">Team</span><span class="lang-ko lang-hidden font-geist">팀</span></a>
-            <a href="#event" class="hover:text-white transition-colors"><span class="lang-en font-geist">Event</span><span class="lang-ko lang-hidden font-geist">이벤트</span></a>
-            <a href="#contact" class="hover:text-white transition-colors"><span class="lang-en font-geist">Contact</span><span class="lang-ko lang-hidden font-geist">문의</span></a>
+    <nav class="fixed w-full z-50 glass transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" class="text-xl tracking-tighter text-gray-900 font-medium z-50 flex items-center gap-2">
+                <div class="w-8 h-8 bg-brand-900 rounded-full flex items-center justify-center text-white">
+                    <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/200846ed-9100-41a8-a2b6-8a715ceeeded_320w.png" alt="CHAPPYNEURO Logo" class="md:h-10 filter contrast-200 h-8 object-contain invert brightness-200" style="opacity: 0.9;">
+                </div>
+                CHAPPYNEURO
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium">
+                <a href="#vision" class="hover:text-black transition-colors"><span class="show-en">Vision</span><span class="show-kr">비전</span></a>
+                <a href="#solution" class="hover:text-black transition-colors"><span class="show-en">Solution</span><span class="show-kr">솔루션</span></a>
+                <a href="#effect" class="hover:text-black transition-colors"><span class="show-en">Effect</span><span class="show-kr">효과</span></a>
+                <a href="#team" class="hover:text-black transition-colors"><span class="show-en">Team</span><span class="show-kr">팀</span></a>
+                <a href="#milestone" class="hover:text-black transition-colors"><span class="show-en">Milestone</span><span class="show-kr">마일스톤</span></a>
+                <a href="#contact" class="hover:text-black transition-colors"><span class="show-en">Contact</span><span class="show-kr">문의</span></a>
+            </div>
+
+            <!-- Lang Toggle & CTA -->
+            <div class="flex items-center gap-4">
+                <button onclick="toggleLang()" id="langToggleBtn" class="text-sm font-medium hover:text-black transition-colors border border-gray-200 px-3 py-1.5 rounded-full bg-white">
+                    KR / EN
+                </button>
+                <a href="#contact" class="hidden md:inline-flex px-5 py-2.5 bg-brand-900 text-white text-xs font-medium rounded-full hover:bg-gray-800 transition-all hover:scale-105 active:scale-95 tracking-wide">
+                    <span class="show-en">Get Started</span><span class="show-kr">시작하기</span>
+                </a>
+                <!-- 모바일 햄버거 버튼 -->
+                <button onclick="toggleMobileMenu()" id="mobileMenuBtn" class="md:hidden text-gray-900 text-2xl flex items-center" aria-label="Menu">
+                    <iconify-icon icon="solar:hamburger-menu-linear"></iconify-icon>
+                </button>
+            </div>
         </div>
 
-        <!-- Language Switcher -->
-        <div class="flex items-center gap-4 z-50">
-            <button onclick="toggleLanguage()" class="group flex justify-center hover:bg-white/10 hover:border-copper-400/30 transition-all duration-300 bg-white/5 border-white/10 border rounded-full py-2 w-28 items-center">
-                <div class="flex gap-2 gap-x-2 gap-y-2 items-center">
-                    <span class="group-hover:text-white text-xs font-semibold text-stone-300 font-geist" id="lang-btn-text">EN / KR</span>
-                </div>
-            </button>
+        <!-- 모바일 드롭다운 메뉴 -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-gray-100 px-6 py-4 flex-col gap-1 text-sm font-medium">
+            <a href="#vision" onclick="closeMobileMenu()" class="block py-2 hover:text-black transition-colors"><span class="show-en">Vision</span><span class="show-kr">비전</span></a>
+            <a href="#solution" onclick="closeMobileMenu()" class="block py-2 hover:text-black transition-colors"><span class="show-en">Solution</span><span class="show-kr">솔루션</span></a>
+            <a href="#effect" onclick="closeMobileMenu()" class="block py-2 hover:text-black transition-colors"><span class="show-en">Effect</span><span class="show-kr">효과</span></a>
+            <a href="#team" onclick="closeMobileMenu()" class="block py-2 hover:text-black transition-colors"><span class="show-en">Team</span><span class="show-kr">팀</span></a>
+            <a href="#milestone" onclick="closeMobileMenu()" class="block py-2 hover:text-black transition-colors"><span class="show-en">Milestone</span><span class="show-kr">마일스톤</span></a>
+            <a href="#contact" onclick="closeMobileMenu()" class="block py-2 hover:text-black transition-colors"><span class="show-en">Contact</span><span class="show-kr">문의</span></a>
+            <a href="#contact" onclick="closeMobileMenu()" class="mt-3 inline-flex px-5 py-2.5 bg-brand-900 text-white text-xs font-medium rounded-full justify-center">
+                <span class="show-en">Get Started</span><span class="show-kr">시작하기</span>
+            </a>
         </div>
     </nav>
 
-    <main class="">
-        <!-- 1. HERO SECTION -->
-        <section id="intro" class="relative w-full h-[100vh] min-h-[700px] flex flex-col justify-center items-center overflow-hidden">
-            <!-- Background Image -->
-            <div class="absolute inset-0 z-0">
-                <div class="absolute inset-0 bg-forest-950/20 z-10"></div>
-                <div class="absolute inset-0 bg-gradient-to-t from-forest-950 via-forest-950/50 to-transparent z-10"></div>
-                <div class="z-10 bg-gradient-to-r from-forest-950/80 via-transparent to-forest-950/80 absolute top-0 right-0 bottom-0 left-0"></div>
-                
-                <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/a1ba35c0-ac72-4803-a28b-daa8d734983b_3840w.jpg" alt="ChappyNeuro Interface" class="w-full h-full object-cover animate-pan opacity-50 mix-blend-luminosity filter brightness-75 contrast-125" style="">
-            </div>
-
-            <!-- Content -->
-            <div class="relative z-20 w-full max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-12 items-center h-full pt-20">
-                <div class="md:col-span-8 reveal active">
-                    <div class="inline-flex items-center gap-3 mb-6">
-                        <span class="w-8 h-px bg-copper-400"></span>
-                        <span class="text-xs font-mono font-medium tracking-widest text-copper-400 uppercase">
-                            <span class="lang-en font-geist">Smart Addiction Care Solution</span>
-                            <span class="lang-ko lang-hidden font-geist">스마트 중독 케어 솔루션</span>
-                        </span>
-                    </div>
-
-                    <!-- Title Image -->
-                    <div class="mb-8">
-                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/b6bf4d8f-fb46-4470-bf97-57d3a0936222_800w.png" alt="CHAPPYNEURO" class="md:h-32 lg:h-40 w-auto h-20 object-contain" style="">
-                    </div>
-                    
-                    <p class="max-w-xl text-lg md:text-xl text-stone-400 leading-relaxed font-light">
-                        <span class="lang-en font-geist">Redefining efficiency in addiction care through precision decision-making and sustained adherence.</span>
-                        <span class="lang-ko lang-hidden font-geist">정밀한 의사결정과 지속적인 치료 충실도로 중독 치료의 효율성을 새롭게 정의합니다.</span>
-                    </p>
+    <!-- Section 1: Vision (Hero Slider) -->
+    <section id="vision" class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-gray-900">
+        <!-- Slide 1 -->
+        <div class="hero-slide active" style="background: linear-gradient(rgba(17,24,39,0.7), rgba(17,24,39,0.7)), url('https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/22e3eadd-4649-475d-9bfa-98ee2bc91271_original.png') center/cover;">
+            <div class="relative z-10 max-w-4xl mx-auto px-6 text-center h-full flex flex-col justify-center items-center pt-32">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-gray-500 bg-white/10 backdrop-blur-sm mb-8">
+                    <span class="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>
+                    <span class="text-xs font-medium uppercase tracking-widest text-gray-300 show-en">Neuroscience & AI</span>
+                    <span class="text-xs font-medium uppercase tracking-widest text-gray-300 show-kr">뇌공학·뇌과학 기반</span>
                 </div>
-            </div>
-            
-            <!-- Scroll Indicator -->
-            <div class="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 animate-bounce">
-                <span class="icon-[lucide--arrow-down] w-5 h-5 text-stone-500"></span>
-            </div>
-        </section>
-
-        <!-- Development Message -->
-        <section class="border-y border-white/5 bg-forest-900/20 py-24 md:py-32 relative overflow-hidden flex items-center justify-center">
-             <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-copper-900/10 rounded-full blur-[120px] pointer-events-none"></div>
-             
-             <div class="max-w-7xl mx-auto px-6 text-center z-10 reveal">
-                <h2 class="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight text-stone-200">
-                    <span class="lang-en font-geist">
-                        <span class="text-copper-400">Addicare</span>, currently in development, 
-                        visits customers in the <span class="text-white border-b-2 border-copper-500/50 pb-1">second half of 2026</span>.
-                    </span>
-                    <span class="lang-ko lang-hidden font-geist">
-                        현재 개발 중인 <span class="text-copper-400">Addicare</span>는 
-                        <span class="text-white border-b-2 border-copper-500/50 pb-1">2026년 하반기</span>에 고객 여러분을 찾아갑니다.
-                    </span>
-                </h2>
-             </div>
-        </section>
-
-        <!-- 2. SOLUTION -->
-        <section class="border-white/5 border-b pt-32 pb-32 relative" id="solution">
-            <div class="max-w-7xl mx-auto px-6">
-                
-                <div class="mb-20 text-center">
-                    <span class="text-xs font-mono text-copper-400 tracking-widest uppercase mb-4 block">
-                        <span class="lang-en font-geist">Solution</span><span class="lang-ko lang-hidden font-geist">솔루션</span>
-                    </span>
-                    <h2 class="text-4xl md:text-5xl font-semibold text-white tracking-tight mb-6">
-                        <span class="lang-en font-geist font-semibold">Multi-Platform Integration</span>
-                        <span class="lang-ko lang-hidden font-geist font-semibold">멀티 플랫폼 통합</span>
-                    </h2>
-                    <p class="text-stone-400 max-w-2xl mx-auto">
-                        <span class="lang-en font-geist">Seamlessly access mental health data from any device. The combination of biometric biomarkers and AI-JITAI methods allows patients to monitor their real-time status.</span>
-                        <span class="lang-ko lang-hidden font-geist">모든 기기에서 정신 건강 데이터에 원활하게 액세스할 수 있습니다. 생체 바이오마커와 AI-JITAI 방법을 결합하면 환자가 실시간으로 상태를 모니터링할 수 있습니다.</span>
-                    </p>
-                </div>
-
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end">
-                    
-                    <!-- Monitor Screen -->
-                    <div class="lg:col-span-8 reveal active">
-                        <div class="relative mx-auto border-gray-800 bg-gray-800 border-[12px] rounded-xl shadow-2xl">
-                            <div class="h-[32px] bg-gray-800 rounded-t-xl absolute -top-[12px] left-0 right-0 flex items-center justify-center">
-                                <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
-                            </div>
-                            <div class="rounded-lg overflow-hidden bg-forest-900 aspect-video relative group">
-                                <img onclick="openModal(this.src)" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/0af85e14-65a3-45b7-84c3-9264032f7929_original.gif" class="cursor-zoom-in group-hover:opacity-100 transition-opacity opacity-80 w-full h-full object-cover" alt="Desktop Dashboard Interface">
-                                <div class="absolute top-4 left-4 right-4 flex justify-between items-center z-10 pointer-events-none">
-                                    <div class="text-[10px] text-copper-400 font-mono border-white/5 border rounded pt-1 pr-3 pb-1 pl-3 backdrop-blur font-geist">DASHBOARD_V2.0</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mt-6 text-center lg:text-left">
-                            <h3 class="text-lg font-medium text-white font-geist" style="">Clinical Decision Support System</h3>
-                            <p class="text-sm text-stone-500 mt-1 font-geist">A specialized addiction management system for clinicians, providing data-driven quantitative treatment evaluation and clinical decision support.</p>
-                        </div>
-                    </div>
-
-                    <!-- Mobile Screen -->
-                    <div class="lg:col-span-4 flex flex-col items-center lg:items-start reveal active delay-100">
-                        <div class="border-[10px] bg-gray-800 w-[280px] h-[500px] border-gray-800 rounded-[2.5rem] relative shadow-2xl">
-                            <div class="-translate-x-1/2 z-20 bg-gray-800 w-[120px] h-[24px] rounded-b-xl absolute top-0 left-1/2"></div>
-                            <div class="rounded-[2rem] overflow-hidden h-full w-full bg-forest-900 relative group">
-                                <img onclick="openModal(this.src)" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/9c569300-bfe7-4319-b0d9-f8dd8313ac5f_original.gif" class="cursor-zoom-in group-hover:opacity-100 transition-opacity opacity-80 w-full h-full object-cover" alt="Mobile App Interface" style="">
-                            </div>
-                        </div>
-                        <div class="mt-6 text-center lg:text-left">
-                            <h3 class="text-white font-medium text-lg font-geist">Patient Companion App</h3>
-                            <p class="text-sm text-stone-500 mt-1 font-geist">Biosignal-driven AI-JITAI for personalized craving and withdrawal intervention.</p>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <!-- 3. EFFECT -->
-        <section class="border-white/5 border-t pt-32 pb-32 relative" id="effect">
-    <div class="max-w-7xl mx-auto px-6">
-        <div class="grid grid-cols-1 md:grid-cols-2 bg-forest-900/30 border border-white/5 rounded-sm overflow-hidden items-stretch">
-            
-            <div class="p-12 flex flex-col justify-center">
-                <span class="text-xs font-mono text-bronze-400 tracking-widest uppercase mb-4 block">
-                    <span class="lang-en font-geist">Effect</span><span class="lang-ko lang-hidden font-geist">효과</span>
-                </span>
-                <h2 class="text-3xl md:text-4xl text-white font-semibold mb-6">
-                    <span class="lang-en font-geist font-semibold">Quantifiable Clarity</span>
-                    <span class="lang-ko lang-hidden font-geist font-semibold">정량화 가능한 명료함</span>
-                </h2>
-                <p class="leading-relaxed text-sm text-stone-400 mb-10">
-                    <span class="lang-en font-geist">Beyond monitoring, our solution empowers real-time care. By leveraging wearable data for timely interventions, we bridge the gap between patients and providers—optimizing decision-making and maximizing treatment success. <br>(click image)</span>
-                    <span class="lang-ko lang-hidden font-geist">단순한 모니터링을 넘어, 진정한 실시간 케어를 실현합니다. 웨어러블 데이터를 활용한 적시 개입으로 환자와 의료진 사이의 간극을 좁히고, 의사결정을 최적화하여 치료 성공률을 극대화합니다. <br>(이미지를 클릭하면 크게 보입니다)</span>
+                <h1 class="text-5xl md:text-7xl font-semibold text-white tracking-tighter leading-[1.1] mb-6">
+                    <span class="show-en">Neuroscience understands.<br> <span class="text-blue-400">AI connects.</span></span>
+                    <span class="show-kr">뇌과학이 이해하고,<br> <span class="text-blue-400">AI가 연결합니다.</span></span>
+                </h1>
+                <p class="text-lg md:text-xl text-gray-300 font-light max-w-2xl mx-auto mb-10 leading-relaxed">
+                    <span class="show-en">Combining brain engineering and NLP to systematically organize mental health information within patients’ words.</span>
+                    <span class="show-kr">뇌공학과 자연어처리 기술을 결합하여, 환자의 말 속에 담긴 정신건강 관련 정보를 체계적으로 정리합니다.</span>
                 </p>
-                
-                <div class="grid grid-cols-2 gap-8">
-                    <div class="">
-                        <div class="text-3xl text-white mb-1 font-geist font-semibold">70%</div>
-                        <div class="text-[10px] uppercase tracking-widest text-stone-500">
-                            <span class="lang-en font-geist">Shortening Of Time</span><span class="lang-ko lang-hidden font-geist">진료 시간 감소</span>
-                        </div>
-                    </div>
-                    <div class="">
-                        <div class="text-3xl text-white mb-1 font-geist font-semibold">50%</div>
-                        <div class="text-[10px] uppercase text-stone-500 tracking-widest">
-                            <span class="lang-en font-geist">Efficiency Of Treatment</span><span class="lang-ko lang-hidden font-geist">치료 효과 상승</span>
-                        </div>
-                    </div>
-                </div>
-
-
-		<div class="grid grid-cols-2 gap-8 mt-20">
-                    <div class="">
-                        <div class="text-3xl text-white mb-1 font-geist font-semibold">85%</div>
-                        <div class="text-[10px] uppercase tracking-widest text-stone-500">
-                            <span class="lang-en font-geist">Reduction in Craving Intensity</span><span class="lang-ko lang-hidden font-geist">갈망 강도 감소</span>
-                        </div>
-                    </div>
-                    <div class="">
-                        <div class="text-3xl text-white mb-1 font-geist font-semibold">90%</div>
-                        <div class="text-[10px] uppercase text-stone-500 tracking-widest">
-                            <span class="lang-en font-geist">Engagement & Adherence</span><span class="lang-ko lang-hidden font-geist">치료 순응도</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="relative bg-forest-950 group flex flex-col h-full">
-                <img onclick="openModal(this.src)" 
-                     src="fig1.png" 
-                     class="cursor-zoom-in w-full h-auto object-cover opacity-40 hover:opacity-100 transition-opacity duration-500 block" 
-                     alt="Data Effect">
+                <a href="#solution" class="px-8 py-3.5 bg-blue-600 text-white text-sm font-medium rounded-full hover:bg-blue-700 transition-colors">
+                    <span class="show-en">Explore our solution</span><span class="show-kr">솔루션 알아보기</span>
+                </a>
             </div>
         </div>
-    </div>
-</section>
 
-        <!-- 4. TEAM -->
-        <section class="border-white/5 border-t pt-24 pb-24 relative" id="team">
-            <div class="max-w-7xl mx-auto px-6">
-                <div class="flex flex-col md:flex-row justify-between items-end mb-16">
-                    <div class="">
-                        <span class="text-xs font-mono text-copper-400 tracking-widest uppercase mb-4 block">
-                            <span class="lang-en font-geist">a group of brain engineering-based professionals</span><span class="lang-ko lang-hidden font-geist">뇌과학 기반의 전문가 그룹이 만듭니다</span>
-                        </span>
-                        <h2 class="text-4xl font-semibold text-white tracking-tight">
-                            <span class="lang-en font-geist font-semibold">Team</span><span class="lang-ko lang-hidden font-geist font-semibold">팀</span>
-                        </h2>
-                    </div>
+        <!-- Slide 2 -->
+        <div class="hero-slide" style="background: linear-gradient(rgba(17,24,39,0.7), rgba(17,24,39,0.7)), url('https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/ab8b259e-4105-4425-8108-89c7089aa12d_original.png') center/cover;">
+            <div class="relative z-10 max-w-4xl mx-auto px-6 text-center h-full flex flex-col justify-center items-center pt-32">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-gray-500 bg-white/10 backdrop-blur-sm mb-8">
+                    <span class="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>
+                    <span class="text-xs font-medium uppercase tracking-widest text-gray-300 show-en">For Mental Health Advancement</span>
+                    <span class="text-xs font-medium uppercase tracking-widest text-gray-300 show-kr">정신건강 발전을 위한 기업</span>
                 </div>
+                <h1 class="text-5xl md:text-7xl font-semibold text-white tracking-tighter leading-[1.1] mb-6">
+                    <span class="show-en">AI listens.<br> <span class="text-blue-400">Doctors decide.</span></span>
+                    <span class="show-kr">AI가 듣고,<br> <span class="text-blue-400">의사가 판단합니다.</span></span>
+                </h1>
+                <p class="text-lg md:text-xl text-gray-300 font-light max-w-2xl mx-auto mb-10 leading-relaxed">
+                    <span class="show-en">ChappyNeuro streamlines the pre-screening process in psychiatric clinics through conversational AI, enabling doctors to focus on patient consultations.</span>
+                    <span class="show-kr">채피뉴로는 대화형 AI로 정신건강의학과의 사전 문진 과정을 효율화하고, 의사가 면담에만 집중할 수 있는 환경을 만듭니다.</span>
+                </p>
+                <a href="#solution" class="px-8 py-3.5 bg-blue-600 text-white text-sm font-medium rounded-full hover:bg-blue-700 transition-colors">
+                    <span class="show-en">Our vision</span><span class="show-kr">우리의 비전</span>
+                </a>
+            </div>
+        </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <!-- Member 1 -->
-                    <div class="group reveal">
-                        <div class="aspect-[3/4] bg-stone-900 mb-6 overflow-hidden rounded-sm relative">
-                            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/a945cd24-903f-4a91-8595-cb5d084937af_800w.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" alt="Dr. Thorne" style="">
-                        </div>
-                        <h3 class="text-lg text-white font-medium font-geist">Hyeon-Jun Moon(Richard)</h3>
-                        <p class="text-[10px] text-stone-500 uppercase tracking-widest mt-1 font-geist">Co-Founder &amp; CEO</p>
+        <!-- Slide 3 -->
+        <div class="hero-slide" style="background: linear-gradient(rgba(17,24,39,0.7), rgba(17,24,39,0.7)), url('https://images.unsplash.com/photo-1527613426441-4da17471b66d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80') center/cover;">
+            <div class="relative z-10 max-w-4xl mx-auto px-6 text-center h-full flex flex-col justify-center items-center pt-32">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-gray-500 bg-white/10 backdrop-blur-sm mb-8">
+                    <span class="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>
+                    <span class="text-xs font-medium uppercase tracking-widest text-gray-300 show-en">AI Service for People</span>
+                    <span class="text-xs font-medium uppercase tracking-widest text-gray-300 show-kr">사람을 향하는 AI 서비스</span>
+                </div>
+                <h1 class="text-5xl md:text-7xl font-semibold text-white tracking-tighter leading-[1.1] mb-6">
+                    <span class="show-en">A world where everyone<br> <span class="text-blue-400">gets heard, on time</span></span>
+                    <span class="show-kr">누구나 제때, 제대로<br> <span class="text-blue-400">상담받는 세상</span></span>
+                </h1>
+                <p class="text-lg md:text-xl text-gray-300 font-light max-w-2xl mx-auto mb-10 leading-relaxed">
+                    <span class="show-en">92.8% go without support. We fundamentally change access to mental health consultations through AI. One conversation transforms the preparation.</span>
+                    <span class="show-kr">92.8%의 미치료율. 우리는 AI 기술로 정신건강 상담의 접근성을 근본적으로 바꿉니다. 대화 한 번으로, 면담 준비가 바뀝니다.</span>
+                </p>
+                <a href="#contact" class="px-8 py-3.5 bg-blue-600 text-white text-sm font-medium rounded-full hover:bg-blue-700 transition-colors">
+                    <span class="show-en">Get started with MindPilot</span><span class="show-kr">MindPilot 시작하기</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Solution -->
+    <section id="solution" class="py-24 bg-surface">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 animate-on-scroll">
+                <h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-gray-900 mb-4">
+                    <span class="show-en">MindPilot — Conversational AI Pre-screening Organizer</span>
+                    <span class="show-kr">MindPilot — 대화형 AI 사전 문진 정리 소프트웨어</span>
+                </h2>
+                <p class="text-gray-500 font-light max-w-2xl mx-auto">
+                    <span class="show-en">Our AI organizes patients’ natural language into structured pre-consultation information for physicians.</span>
+                    <span class="show-kr">환자의 자연어 대화를 AI가 정리하여, 의사에게 구조화된 사전 정보를 제공합니다.</span>
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Step 1 -->
+                <div class="p-8 bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow animate-on-scroll">
+                    <div class="w-12 h-12 bg-brand-50 rounded-full flex items-center justify-center mb-6 text-brand-500">
+                        <iconify-icon icon="solar:chat-round-line-linear" class="text-2xl"></iconify-icon>
                     </div>
-                    <!-- Member 2 -->
-                    <div class="group reveal">
-                        <div class="aspect-[3/4] bg-stone-900 mb-6 overflow-hidden rounded-sm relative">
-                            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/c2cdbc13-5928-49f0-be3f-f7f45484545d_800w.png" class="group-hover:grayscale-0 transition-all duration-700 w-full h-full object-cover grayscale" alt="Dr. Vance">
-                        </div>
-                        <h3 class="text-lg text-white font-medium font-geist">Dr. Min-Ki Kim</h3>
-                        <p class="text-[10px] text-stone-500 uppercase tracking-widest mt-1 font-geist">Co-Founder &amp; CTO &amp; Computational Neuroscientist</p>
+                    <p class="text-xs font-semibold text-brand-500 mb-2 uppercase tracking-wide">Step 1</p>
+                    <h3 class="text-xl text-gray-900 font-medium tracking-tight mb-3">
+                        <span class="show-en">Rapport Building & Collection</span>
+                        <span class="show-kr">라포 형성 및 정보 수집</span>
+                    </h3>
+                    <p class="text-gray-500 text-sm font-light leading-relaxed">
+                        <span class="show-en">It starts with a warm conversation. Instead of rigid questionnaires, everyday dialogue minimizes patient burden and naturally collects relevant information.</span>
+                        <span class="show-kr">따뜻한 대화로 시작합니다. 딱딱한 질문지 대신 일상적인 대화를 통해 환자의 부담을 최소화하고, 관련 정보를 자연스럽게 수집합니다.</span>
+                    </p>
+                </div>
+                <!-- Step 2 -->
+                <div class="p-8 bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow animate-on-scroll delay-100">
+                    <div class="w-12 h-12 bg-brand-50 rounded-full flex items-center justify-center mb-6 text-brand-500">
+                        <iconify-icon icon="solar:document-text-linear" class="text-2xl"></iconify-icon>
                     </div>
-                    <!-- Member 3 -->
-                    <div class="group reveal">
-                        <div class="aspect-[3/4] bg-stone-900 mb-6 overflow-hidden rounded-sm relative">
-                            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/faf8a569-b672-464d-96d8-d1c696f7987c_800w.png" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" alt="Dr. Kai" style="">
-                        </div>
-                        <h3 class="text-lg text-white font-medium font-geist">Sang Hoon Kim</h3>
-                        <p class="text-[10px] text-stone-500 uppercase tracking-widest mt-1 font-geist">Co-founder &amp; S/W developer &amp; Neuroscientist</p>
+                    <p class="text-xs font-semibold text-brand-500 mb-2 uppercase tracking-wide">Step 2</p>
+                    <h3 class="text-xl text-gray-900 font-medium tracking-tight mb-3">
+                        <span class="show-en">Auto-organization & Structuring</span>
+                        <span class="show-kr">자동 정리 및 구조화</span>
+                    </h3>
+                    <p class="text-gray-500 text-sm font-light leading-relaxed">
+                        <span class="show-en">Conversation content is structured into standard formats. All outputs are reference materials; clinical interpretation is performed solely by the physician.</span>
+                        <span class="show-kr">대화 내용을 표준 설문 양식에 맞춰 자동으로 정리하고 구조화합니다. 모든 결과는 참고 자료이며, 임상적 해석은 의사가 수행합니다.</span>
+                    </p>
+                </div>
+                <!-- Step 3 -->
+                <div class="p-8 bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow animate-on-scroll delay-200">
+                    <div class="w-12 h-12 bg-brand-50 rounded-full flex items-center justify-center mb-6 text-brand-500">
+                        <iconify-icon icon="solar:shield-keyhole-linear" class="text-2xl"></iconify-icon>
                     </div>
+                    <p class="text-xs font-semibold text-brand-500 mb-2 uppercase tracking-wide">Step 3</p>
+                    <h3 class="text-xl text-gray-900 font-medium tracking-tight mb-3">
+                        <span class="show-en">Secure Transfer</span>
+                        <span class="show-kr">보안 전송</span>
+                    </h3>
+                    <p class="text-gray-500 text-sm font-light leading-relaxed">
+                        <span class="show-en">Encrypted with AES-256 under patient opt-in consent, data is instantly transmitted to the clinic system securely.</span>
+                        <span class="show-kr">환자 동의(Opt-in) 기반으로 AES-256 암호화를 적용하여 클리닉 시스템으로 즉시 안전하게 전송합니다.</span>
+                    </p>
+                </div>
+                <!-- Step 4 -->
+                <div class="p-8 bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow animate-on-scroll delay-300">
+                    <div class="w-12 h-12 bg-brand-50 rounded-full flex items-center justify-center mb-6 text-brand-500">
+                        <iconify-icon icon="solar:monitor-smartphone-linear" class="text-2xl"></iconify-icon>
+                    </div>
+                    <p class="text-xs font-semibold text-brand-500 mb-2 uppercase tracking-wide">Step 4</p>
+                    <h3 class="text-xl text-gray-900 font-medium tracking-tight mb-3">
+                        <span class="show-en">Structured Dashboard</span>
+                        <span class="show-kr">사전 정보 대시보드</span>
+                    </h3>
+                    <p class="text-gray-500 text-sm font-light leading-relaxed">
+                        <span class="show-en">Physicians can quickly grasp patient context. All clinical judgment and decision-making remains entirely within the physician’s authority.</span>
+                        <span class="show-kr">의사는 구조화된 정보를 통해 상황을 빠르게 파악하고 면담 효율을 높입니다. 임상적 판단은 전적으로 의사의 권한입니다.</span>
+                    </p>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- 5. EVENT SECTION -->
-        <section id="event" class="relative py-28 overflow-hidden bg-forest-950">
-            <!-- Distinctive Gradient Background -->
-            <div class="absolute inset-0 bg-gradient-to-b from-copper-900/20 via-forest-950 to-forest-950 z-0"></div>
-            <!-- Radial glow in center -->
-            <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-copper-500/10 rounded-full blur-[100px] pointer-events-none"></div>
-            
-            <div class="relative z-10 max-w-4xl mx-auto px-6 text-center">
-                <!-- Glowing Border Box -->
-                <div class="p-1 rounded-2xl bg-gradient-to-br from-copper-400/30 via-transparent to-purple-500/30">
-                    <div class="bg-forest-950/80 backdrop-blur-xl border border-white/10 rounded-xl p-12 md:p-16 shadow-2xl">
-                        
-                        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-copper-400/50 bg-copper-400/10 mb-8 shadow-[0_0_15px_rgba(45,212,191,0.2)]">
-                            <span class="w-2 h-2 rounded-full bg-copper-400 animate-pulse"></span>
-                            <span class="text-[10px] font-bold text-copper-300 uppercase tracking-widest font-geist">Limited Time Offer</span>
-                        </div>
-                        
-                        <h2 class="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight leading-tight drop-shadow-xl">
-                            <span class="lang-en font-geist font-semibold">Big Event!</span>
-                            <span class="lang-ko lang-hidden font-geist font-semibold">빅 이벤트!</span>
-                        </h2>
-                        
-                        <div class="w-16 h-1 bg-gradient-to-r from-transparent via-copper-400 to-transparent mx-auto mb-8"></div>
+    <!-- Section: Product Image -->
+    <section class="bg-surface pb-24">
+        <div class="max-w-5xl mx-auto px-6 animate-on-scroll">
+            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/eac4afd6-7f26-48cb-a4ce-7eeaaa08a1ab_original.png"
+                 alt="MindPilot"
+                 class="w-full h-auto rounded-2xl shadow-lg">
+        </div>
+    </section>
 
-                        <p class="text-lg md:text-xl text-stone-200 mb-10 leading-relaxed font-light mx-auto max-w-2xl">
-                            <span class="lang-en font-geist">Reserve now to be the first to adopt the system. <br><span class="text-copper-400 font-semibold font-geist">50% discount for 1 year.</span><br> Discount available just for consultation.</span>
-                            <span class="lang-ko lang-hidden font-geist">지금 예약하면 가장 먼저 시스템을 도입할 수 있습니다. <br><span class="text-copper-400 font-semibold font-geist">1년간 50% 이용료 할인 혜택 제공.</span><br> 상담만 해도 할인 혜택을 받을 수 있습니다.</span>
-                        </p>
-
-                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSeqzXcTQTgQoOGy8IcKeoDkDTRIDfb8yxDPSov-XOpLhfmU7g/viewform?usp=preview" class="inline-flex items-center justify-center gap-3 text-forest-950 hover:scale-105 hover:shadow-[0_0_30px_rgba(45,212,191,0.4)] transition-all duration-300 text-sm font-bold bg-gradient-to-r from-copper-500 to-copper-400 rounded-full pt-5 pr-10 pb-5 pl-10">
-                            <span class="lang-en font-geist">Claim Offer Now</span><span class="lang-ko lang-hidden font-geist">지금 혜택 받기</span>
-                            
-                        </a>
-                    </div>
+    <!-- Section 3: Effect -->
+    <section id="effect" class="py-24 bg-white border-t border-gray-100">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 animate-on-scroll">
+                <div class="max-w-2xl">
+                    <h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-gray-900 mb-4">
+                        <span class="show-en">The MindPilot effect on workflow efficiency</span>
+                        <span class="show-kr">MindPilot이 만드는 업무 효율 변화</span>
+                    </h2>
+                    <p class="text-gray-500 font-light">
+                        <span class="show-en">Simultaneously improves workflow efficiency and clinic revenue.</span>
+                        <span class="show-kr">도입 클리닉의 업무 효율과 수익을 동시에 향상시킵니다.</span>
+                    </p>
                 </div>
             </div>
-        </section>
 
-        <!-- 6. CONTACT -->
-        <section id="contact" class="py-24 bg-forest-950 relative border-t border-white/5">
-            <div class="max-w-7xl mx-auto px-6">
-                <!-- Changed Layout to Flex/Grid for Side-by-Side on Desktop -->
-                <div class="reveal flex flex-col md:flex-row md:items-end justify-between gap-12">
-                    
-                    <!-- Left Column: Content -->
-                    <div class="max-w-xl w-full">
-                        <span class="text-xs font-mono text-stone-500 tracking-widest uppercase mb-6 block">
-                            <span class="lang-en font-geist">Contact</span><span class="lang-ko lang-hidden font-geist">문의</span>
-                        </span>
-                        <h2 class="text-4xl md:text-5xl font-semibold text-white mb-8">
-                            <span class="lang-en font-geist font-semibold">Initiate ADDICARE</span>
-                            <span class="lang-ko lang-hidden font-geist font-semibold">Addicare 시작</span>
-                        </h2>
+            <!-- Stats Grid -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12 animate-on-scroll delay-100">
+                <div class="p-6 bg-brand-50 rounded-2xl border border-brand-100">
+                    <h3 class="text-3xl font-semibold text-brand-900 tracking-tight mb-2">
+                        <span class="show-en">80%</span><span class="show-kr">80% 단축</span>
+                    </h3>
+                    <p class="text-sm font-medium text-gray-900 mb-1">
+                        <span class="show-en">Prep Time Reduced</span><span class="show-kr">사전 준비 시간</span>
+                    </p>
+                    <p class="text-xs text-gray-500">
+                        <span class="show-en">From 60 mins to 12 mins.</span><span class="show-kr">60분 소요 업무를 12분으로.</span>
+                    </p>
+                </div>
+                <div class="p-6 bg-brand-50 rounded-2xl border border-brand-100">
+                    <h3 class="text-3xl font-semibold text-brand-900 tracking-tight mb-2">
+                        <span class="show-en">2.5x</span><span class="show-kr">2.5배 증가</span>
+                    </h3>
+                    <p class="text-sm font-medium text-gray-900 mb-1">
+                        <span class="show-en">Consultation Capacity</span><span class="show-kr">면담 가용 시간</span>
+                    </p>
+                    <p class="text-xs text-gray-500">
+                        <span class="show-en">More time for actual care.</span><span class="show-kr">사전 확인 시간 절감 효과.</span>
+                    </p>
+                </div>
+                <div class="p-6 bg-brand-50 rounded-2xl border border-brand-100">
+                    <h3 class="text-3xl font-semibold text-brand-900 tracking-tight mb-2">
+                        <span class="show-en">+5.4M</span><span class="show-kr">월 +540만</span>
+                    </h3>
+                    <p class="text-sm font-medium text-gray-900 mb-1">
+                        <span class="show-en">Revenue Support</span><span class="show-kr">수가 청구 지원</span>
+                    </p>
+                    <p class="text-xs text-gray-500">
+                        <span class="show-en">Data structuring for claims.</span><span class="show-kr">데이터 구조화 지원 수익.</span>
+                    </p>
+                </div>
+                <div class="p-6 bg-brand-50 rounded-2xl border border-brand-100">
+                    <h3 class="text-3xl font-semibold text-brand-900 tracking-tight mb-2">
+                        <span class="show-en">60%</span><span class="show-kr">60% 감소</span>
+                    </h3>
+                    <p class="text-sm font-medium text-gray-900 mb-1">
+                        <span class="show-en">No-show Decrease</span><span class="show-kr">No-show 감소</span>
+                    </p>
+                    <p class="text-xs text-gray-500">
+                        <span class="show-en">Improved attendance rates.</span><span class="show-kr">대기 부담 해소, 내원율 개선.</span>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Patient Benefits -->
+            <div class="bg-gray-900 rounded-3xl p-8 md:p-12 flex flex-col md:flex-row gap-8 items-center animate-on-scroll delay-200">
+                <div class="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center text-white shrink-0">
+                    <iconify-icon icon="solar:heart-pulse-linear" class="text-3xl"></iconify-icon>
+                </div>
+                <div>
+                    <h3 class="text-xl text-white font-medium mb-3">
+                        <span class="show-en">Patient Benefits</span><span class="show-kr">이용자(환자) 이점</span>
+                    </h3>
+                    <p class="text-gray-300 font-light leading-relaxed italic">
+                        <span class="show-en">"Instead of the tension and fatigue of filling dozens of paper questionnaire items, patients comfortably share their condition through warm AI conversation. Wait times shrink, and doctors focus on consultations with pre-organized information. The quality of experience patients feel fundamentally changes."</span>
+                        <span class="show-kr">"종이 설문지에 수십 문항을 기입하는 긴장과 피로 대신, 편안한 AI 대화로 자신의 상태를 자연스럽게 전합니다. 대기 시간이 줄고, 의사는 사전 정보를 바탕으로 면담에 집중합니다. 환자가 느끼는 상담 경험이 달라집니다."</span>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Disclaimer -->
+            <div class="mt-8 text-xs text-gray-400 font-light text-center px-4 animate-on-scroll delay-300">
+                <span class="show-en">The above figures are estimates based on internal simulations; actual results may vary by clinic environment. MindPilot is not a medical device and is not intended to diagnose, treat, or prevent any disease. All clinical decisions remain solely within the physician’s authority.</span>
+                <span class="show-kr">상기 수치는 내부 시뮬레이션 기반 추정치이며, 실제 효과는 의원 환경에 따라 다를 수 있습니다. MindPilot은 의료기기가 아니며, 질병의 진단·치료·예방을 목적으로 하지 않습니다. 모든 임상적 판단은 의사의 고유 권한입니다.</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Team -->
+    <section id="team" class="py-24 bg-surface border-t border-gray-100">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 animate-on-scroll">
+                <h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-gray-900 mb-4">
+                    <span class="show-en">The team built to solve this</span>
+                    <span class="show-kr">이 문제를 풀 수밖에 없는 팀</span>
+                </h2>
+                <p class="text-gray-500 font-light">
+                    <span class="show-en">A founding team combining medical business, AI/brain engineering, and data expertise.</span>
+                    <span class="show-kr">의료 비즈니스, AI·뇌공학, 데이터 엔지니어링 역량이 결집된 창업팀</span>
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Member 1: 문현준 -->
+                <div class="group cursor-pointer animate-on-scroll delay-100">
+                    <div class="relative w-full aspect-[3/4] rounded-2xl overflow-hidden mb-5 bg-gray-200 shadow-sm hover:shadow-md transition-shadow">
+                        <!-- 이미지 (기본 흑백, 호버시 블러 처리) -->
+                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/a945cd24-903f-4a91-8595-cb5d084937af_800w.jpg" alt="Hyun-Jun Moon" class="w-full h-full object-cover grayscale transition-all duration-500 group-hover:blur-md group-hover:scale-105">
                         
-                        <div class="space-y-8 mt-12">
-                            <div class="flex items-start gap-4 group">
-                                <div class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-copper-400 group-hover:border-copper-400 transition-colors shrink-0">
-                                    <span class="icon-[lucide--map-pin] w-5 h-5"></span>
-                                </div>
-                                <div class="">
-                                    <p class="text-lg text-white font-medium font-geist">Contact Phone</p>
-                                    <p class="text-sm text-stone-500 mt-1 font-geist">+82 10-4122-0775</p>
-                                </div>
+                        <!-- 호버 시 나타나는 세부정보 오버레이 -->
+                        <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-center items-center p-6 text-white text-center">
+                            <div class="text-sm font-light space-y-3">
+                                <p class="text-brand-300 font-medium mb-1">Education</p>
+                                <p><span class="show-en">MBA, Hanyang Univ.</span><span class="show-kr">한양대 경영학 석사</span></p>
+                                
+                                <div class="w-8 h-px bg-white/30 mx-auto my-3"></div>
+                                
+                                <p class="text-brand-300 font-medium mb-1">Experience</p>
+                                <p class="text-xs leading-relaxed">
+                                    <span class="show-en">JW Pharmaceutical</span>
+                                    <span class="show-kr">前 JW중외제약</span>
+                                </p>
+                                
+                                <div class="w-8 h-px bg-white/30 mx-auto my-3"></div>
+                                
+                                <p class="text-xs font-medium text-gray-200">
+                                    <span class="show-en">IR, Strategy, Marketing</span>
+                                    <span class="show-kr">투자유치, 경영전략, 마케팅</span>
+                                </p>
                             </div>
-                            
-                            <div class="flex items-start gap-4 group">
-                                <div class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-copper-400 group-hover:border-copper-400 transition-colors shrink-0">
-                                    <span class="icon-[lucide--mail] w-5 h-5"></span>
-                                </div>
-                                <div class="">
-                                    <p class="text-lg text-white font-medium font-geist">Contact E-Mail</p>
-                                    <p class="text-sm text-stone-500 mt-1 font-geist">chappy@chappyneuro.com</p>
-                                </div>
+                        </div>
+                    </div>
+                    <!-- 기본 텍스트 (마우스가 없을 때 사진 아래 중앙 정렬) -->
+                    <div class="text-center">
+                        <h3 class="text-xl font-medium text-gray-900">
+                            <span class="show-en">Hyun-Jun Moon</span><span class="show-kr">문현준</span>
+                        </h3>
+                        <p class="text-brand-500 text-sm font-semibold mt-1">Co-founder, CEO/COO</p>
+                    </div>
+                </div>
+
+                <!-- Member 2: 김민기 -->
+                <div class="group cursor-pointer animate-on-scroll delay-200">
+                    <div class="relative w-full aspect-[3/4] rounded-2xl overflow-hidden mb-5 bg-gray-200 shadow-sm hover:shadow-md transition-shadow">
+                        <!-- 이미지 (기본 흑백, 호버시 블러 처리) -->
+                        <img src="https://community.bu.ac.kr/sites/info/atchmnfl/profl/121/temp_1777524039017100.png" alt="Min-Ki Kim" class="w-full h-full object-cover grayscale transition-all duration-500 group-hover:blur-md group-hover:scale-105">
+                        
+                        <!-- 호버 시 나타나는 세부정보 오버레이 -->
+                        <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-center items-center p-6 text-white text-center">
+                            <div class="text-sm font-light space-y-3">
+                                <p class="text-brand-300 font-medium mb-1">Education</p>
+                                <p><span class="show-en">Ph.D. (AI & Brain Eng), UNIST</span><span class="show-kr">UNIST 공학박사 (AI·뇌공학)</span></p>
+                                
+                                <div class="w-8 h-px bg-white/30 mx-auto my-3"></div>
+                                
+                                <p class="text-brand-300 font-medium mb-1">Experience</p>
+                                <p class="text-xs leading-relaxed">
+                                    <span class="show-en">Prof, Baekseok Univ.</span>
+                                    <span class="show-kr">백석대 컴퓨터공학부 교수</span>
+                                </p>
+                                
+                                <div class="w-8 h-px bg-white/30 mx-auto my-3"></div>
+                                
+                                <p class="text-xs font-medium text-gray-200">
+                                    <span class="show-en">AI engine dev, R&D</span>
+                                    <span class="show-kr">AI 엔진 개발, 기술 로드맵, R&D</span>
+                                </p>
                             </div>
                         </div>
                     </div>
+                    <!-- 기본 텍스트 (마우스가 없을 때 사진 아래 중앙 정렬) -->
+                    <div class="text-center">
+                        <h3 class="text-xl font-medium text-gray-900">
+                            <span class="show-en">Min-Ki Kim</span><span class="show-kr">김민기</span>
+                        </h3>
+                        <p class="text-brand-500 text-sm font-semibold mt-1">Co-founder, CEO/CTO</p>
+                    </div>
+                </div>
 
-                    <!-- Right Column: Button positioned to the right -->
-                    <div class="w-full md:w-auto md:min-w-[320px]">
-                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSeqzXcTQTgQoOGy8IcKeoDkDTRIDfb8yxDPSov-XOpLhfmU7g/viewform?usp=preview" target="_blank" rel="noopener noreferrer" class="w-full group flex items-center justify-center gap-3 bg-stone-200 hover:bg-white text-forest-950 font-bold text-xs uppercase tracking-widest py-5 rounded-sm transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1">
-                            <span class="lang-en font-geist">continue to form</span>
-                            <span class="lang-ko lang-hidden font-geist">구글폼으로 메시지를 남겨주세요</span>
-                            <span class="icon-[lucide--arrow-right] w-4 h-4 group-hover:translate-x-1 transition-transform"></span>
-                        </a>
+                <!-- Member 3: 김상훈 -->
+                <div class="group cursor-pointer animate-on-scroll delay-300">
+                    <div class="relative w-full aspect-[3/4] rounded-2xl overflow-hidden mb-5 bg-gray-200 shadow-sm hover:shadow-md transition-shadow">
+                        <!-- 이미지 (기본 흑백, 호버시 블러 처리) -->
+                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/faf8a569-b672-464d-96d8-d1c696f7987c_800w.png" alt="Sang-Hun Kim" class="w-full h-full object-cover grayscale transition-all duration-500 group-hover:blur-md group-hover:scale-105">
+                        
+                        <!-- 호버 시 나타나는 세부정보 오버레이 -->
+                        <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-center items-center p-6 text-white text-center">
+                            <div class="text-sm font-light space-y-3">
+                                <p class="text-brand-300 font-medium mb-1">Education</p>
+                                <p><span class="show-en">M.S. Eng, Sungkyunkwan Univ.</span><span class="show-kr">성균관대학교 공학석사</span></p>
+                                
+                                <div class="w-8 h-px bg-white/30 mx-auto my-3"></div>
+                                
+                                <p class="text-brand-300 font-medium mb-1">Experience</p>
+                                <p class="text-xs leading-relaxed">
+                                    <span class="show-en">Researcher, IBS Center for Neuroscience Imaging Research</span>
+                                    <span class="show-kr">IBS 뇌과학이미징연구단 연구원</span>
+                                </p>
+                                
+                                <div class="w-8 h-px bg-white/30 mx-auto my-3"></div>
+                                
+                                <p class="text-xs font-medium text-gray-200">
+                                    <span class="show-en">Product design, data pipeline</span>
+                                    <span class="show-kr">제품 설계, 데이터 파이프라인</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 기본 텍스트 (마우스가 없을 때 사진 아래 중앙 정렬) -->
+                    <div class="text-center">
+                        <h3 class="text-xl font-medium text-gray-900">
+                            <span class="show-en">Sang-Hun Kim</span><span class="show-kr">김상훈</span>
+                        </h3>
+                        <p class="text-brand-500 text-sm font-semibold mt-1">Co-founder, PO</p>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Footer -->
-        <footer class="border-t border-white/5 bg-forest-950 py-16">
-            <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
-                 <div class="text-center md:text-left">
-                     <p class="text-[10px] uppercase text-stone-600 tracking-wider mb-2 font-geist" style="">© 2025 CHAPPYNEURO Inc.</p>
-                     <p class="text-[10px] text-stone-700 font-geist">All Cognitive Systems Operational.</p>
-                 </div>
-                 
-                 <div class="flex hover:opacity-100 transition-opacity hover:grayscale-0 opacity-50 grayscale gap-x-3 gap-y-3 items-center">
-                    <div class="flex text-forest-950 w-6 h-6 rounded-sm items-center justify-center">
-                        <span class="icon-[lucide--brain-circuit] w-3 h-3"></span>
-                    </div>
-                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/200846ed-9100-41a8-a2b6-8a715ceeeded_320w.png" alt="CHAPPYNEURO Logo" class="md:h-10 filter contrast-200 h-8 object-contain invert brightness-200" style="opacity: 0.9;">
-                    <span class="text-lg font-bold text-white tracking-tight font-geist">CHAPPYNEURO</span>
-                 </div>
+    <!-- Section: Partners (파트너 발생 시 아래 section의 'hidden' 클래스를 제거하면 노출됨) -->
+    <section id="partners" class="hidden py-20 bg-surface border-t border-gray-100 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6">
+            <!-- 파트너 로고 슬라이더 -->
+            <div class="partner-slider relative overflow-hidden">
+                <!-- 무한 루프를 위해 동일한 로고 묶음을 두 번 반복합니다.
+                     파트너가 생기면 아래 첫 번째 묶음에 <img>를 추가하고,
+                     두 번째 묶음(복제본)에도 동일하게 붙여넣으면 끊김 없이 흐릅니다.
+                     로고는 h-12(세로 높이 통일) w-auto(가로 비율 유지)로 넣으세요. -->
+                <div class="partner-track">
+                    <!-- 묶음 1 -->
+                    <!-- 예시: <img src="파트너_로고_URL" alt="Partner" class="h-12 w-auto object-contain grayscale hover:grayscale-0 transition-all"> -->
+
+                    <!-- 묶음 2 (묶음 1과 동일하게 복제) -->
+                    <!-- 예시: <img src="파트너_로고_URL" alt="Partner" class="h-12 w-auto object-contain grayscale hover:grayscale-0 transition-all"> -->
+                </div>
             </div>
-        </footer>
+        </div>
+    </section>
 
-    </main>
+    <!-- Section 5: Milestone -->
+    <section id="milestone" class="py-24 bg-white border-t border-gray-100">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-16 animate-on-scroll">
+                <h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-gray-900 mb-4">
+                    <span class="show-en">Technology Roadmap</span>
+                    <span class="show-kr">기술 발전 로드맵</span>
+                </h2>
+                <p class="text-gray-500 font-light">
+                    <span class="show-en">Starting from AI conversational pre-screening organization, expanding to biosignal integration and EEG data analysis.</span>
+                    <span class="show-kr">AI 대화형 문진 정리에서 시작하여, 생체 신호 연동과 뇌파 데이터 분석까지 확장합니다.</span>
+                </p>
+            </div>
 
-    <!-- Image Modal -->
-    <div id="imageModal" class="fixed inset-0 z-[100] bg-black/95 backdrop-blur-sm hidden flex items-center justify-center cursor-zoom-out p-4 opacity-0 transition-opacity duration-300" onclick="closeModal()">
-        <img id="modalImage" src="" alt="Full view" class="max-w-full max-h-[95vh] object-contain scale-95 transition-transform duration-300 select-none shadow-2xl rounded-sm">
-        <button class="absolute top-6 right-6 text-white/50 hover:text-white transition-colors">
-            <span class="icon-[lucide--x] w-8 h-8"></span>
-        </button>
-    </div>
+            <!-- Timeline -->
+            <div class="relative border-l border-brand-200 ml-4 md:ml-8 space-y-12">
+                <!-- Phase 1 -->
+                <div class="relative pl-8 animate-on-scroll delay-100">
+                    <div class="absolute -left-3 top-0 w-6 h-6 bg-brand-500 rounded-full border-4 border-white shadow-sm"></div>
+                    <p class="text-sm font-bold text-brand-500 mb-1">Phase 1 (2026)</p>
+                    <h3 class="text-xl font-medium text-gray-900 mb-2">
+                        <span class="show-en">AI Conversational Pre-screening Organizer</span>
+                        <span class="show-kr">AI 대화형 사전 문진 정리 소프트웨어</span>
+                    </h3>
+                    <p class="text-gray-500 font-light text-sm">
+                        <span class="show-en">NLP-based pre-screening MVP, pilot clinic operations, feedback integration and accuracy improvement.</span>
+                        <span class="show-kr">자연어 대화 기반 문진 정리 모델 MVP 개발, 파일럿 병의원 운영, 초기 피드백 반영 및 정확도 향상.</span>
+                    </p>
+                </div>
+                <!-- Phase 2 -->
+                <div class="relative pl-8 animate-on-scroll delay-200">
+                    <div class="absolute -left-3 top-0 w-6 h-6 bg-gray-300 rounded-full border-4 border-white shadow-sm"></div>
+                    <p class="text-sm font-bold text-gray-500 mb-1">Phase 2 (2027)</p>
+                    <h3 class="text-xl font-medium text-gray-900 mb-2">
+                        <span class="show-en">Field Refinement & Regulatory Preparation</span>
+                        <span class="show-kr">필드 고도화 및 규제 준비</span>
+                    </h3>
+                    <p class="text-gray-500 font-light text-sm">
+                        <span class="show-en">Field requirement development, dashboard enhancement, data security hardening, quality system building.</span>
+                        <span class="show-kr">현장 요구사항 반영 개발, 대시보드 고도화, 데이터 보안 강화, 향후 규제 인증 대비 품질 체계 구축.</span>
+                    </p>
+                </div>
+                <!-- Phase 3 -->
+                <div class="relative pl-8 animate-on-scroll delay-300">
+                    <div class="absolute -left-3 top-0 w-6 h-6 bg-gray-300 rounded-full border-4 border-white shadow-sm"></div>
+                    <p class="text-sm font-bold text-gray-500 mb-1">Phase 3 (2027-2028)</p>
+                    <h3 class="text-xl font-medium text-gray-900 mb-2">
+                        <span class="show-en">Biosignal Integration Monitoring</span>
+                        <span class="show-kr">생체 신호 연동 모니터링</span>
+                    </h3>
+                    <p class="text-gray-500 font-light text-sm">
+                        <span class="show-en">Wearable device data integration, user status change tracking & alerts, crisis guidance algorithms.</span>
+                        <span class="show-kr">웨어러블 기기 연동 데이터 수집, 이용자 상태 변화 추적 및 알림, 위기 상황 안내 알고리즘.</span>
+                    </p>
+                </div>
+                <!-- Phase 4 -->
+                <div class="relative pl-8 animate-on-scroll delay-400">
+                    <div class="absolute -left-3 top-0 w-6 h-6 bg-gray-300 rounded-full border-4 border-white shadow-sm"></div>
+                    <p class="text-sm font-bold text-gray-500 mb-1">Phase 4 (2028-2029)</p>
+                    <h3 class="text-xl font-medium text-gray-900 mb-2">
+                        <span class="show-en">EEG Data Integration</span>
+                        <span class="show-kr">뇌파 데이터 연동</span>
+                    </h3>
+                    <p class="text-gray-500 font-light text-sm">
+                        <span class="show-en">Multi-language system, EEG measurement data integration analysis, deep-analytics data platform.</span>
+                        <span class="show-kr">다국어 시스템 개발, 뇌파(EEG) 측정 데이터 연동 분석 기능, 통합 데이터 플랫폼 기반 심층 분석.</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <!-- Section 6: Contact & Footer -->
+    <footer id="contact" class="bg-gray-900 text-white pt-24 pb-12 rounded-t-3xl md:mx-4 mt-12 animate-on-scroll">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 mb-20">
+                <div>
+                    <h2 class="text-4xl font-semibold tracking-tight mb-4">
+                        <span class="show-en">Get in touch</span><span class="show-kr">함께 시작하세요</span>
+                    </h2>
+                    <p class="text-gray-400 font-light mb-8 max-w-md">
+                        <span class="show-en">Interested in piloting MindPilot, investing, or partnering? Fill out the form below or reach out directly.</span>
+                        <span class="show-kr">MindPilot 파일럿 도입, 투자, 협업에 관심이 있으시면 아래 양식을 작성하거나 직접 연락해 주세요.</span>
+                    </p>
+                    <a href="https://forms.gle/xqDDmdzzLDkvvNtY9" target="_blank" class="inline-flex px-8 py-3.5 bg-blue-600 text-white font-medium text-sm rounded-full hover:bg-blue-700 transition-colors gap-2 items-center">
+                        <span class="show-en">Contact us Form</span><span class="show-kr">문의하기</span> <iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
+                    </a>
+                </div>
+
+                <div class="grid grid-cols-1 gap-8">
+                    <div>
+                        <h4 class="text-sm font-medium mb-4 text-gray-300">Contact Info</h4>
+                        <ul class="text-sm text-gray-400 space-y-4 font-light">
+                            <li class="flex items-start gap-3">
+                                <iconify-icon icon="solar:letter-linear" class="text-xl mt-0.5"></iconify-icon>
+                                <span>chappy@chappyneuro.com</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <iconify-icon icon="solar:map-point-linear" class="text-xl mt-0.5"></iconify-icon>
+                                <span>
+                                    <span class="show-en">1, Baekseokdaehak-ro, Dongnam-gu, Cheonan-si, Chungcheongnam-do, Republic of Korea</span>
+                                    <span class="show-kr">충청남도 천안시 동남구 백석대학로 1</span>
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-12 flex flex-col gap-6 text-xs text-gray-500 font-light">
+                <p>
+                    <strong class="text-gray-300">
+                        <span class="show-en">ChappyNeuro Inc. | CEO: Min-Ki Kim, Hyun-Jun Moon</span>
+                        <span class="show-kr">채피뉴로 주식회사 (ChappyNeuro Inc.) | 대표이사: 김민기, 문현준</span>
+                    </strong>
+                </p>
+                <p class="leading-relaxed">
+                    <span class="show-en">MindPilot is not a medical device. It is not intended to diagnose, treat, cure, or prevent any disease, and does not replace a physician’s clinical judgment. This service is software designed to support healthcare professionals’ workflow efficiency.</span>
+                    <span class="show-kr">MindPilot은 의료기기가 아닙니다. 질병의 진단, 치료, 경감, 처치 또는 예방을 목적으로 하지 않으며, 의사의 임상적 판단을 대체하지 않습니다. 본 서비스는 의료진의 업무 효율을 지원하기 위한 소프트웨어입니다.</span>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
     <script>
         // Language Toggle Logic
-        function toggleLanguage() {
-            const enElements = document.querySelectorAll('.lang-en');
-            const koElements = document.querySelectorAll('.lang-ko');
-            const btnText = document.getElementById('lang-btn-text');
-            
-            const isEnglish = !enElements[0].classList.contains('lang-hidden');
-            
-            if (isEnglish) {
-                enElements.forEach(el => el.classList.add('lang-hidden'));
-                koElements.forEach(el => el.classList.remove('lang-hidden'));
+        function toggleLang() {
+            document.body.classList.toggle('lang-kr');
+            document.body.classList.toggle('lang-en');
+            const btn = document.getElementById('langToggleBtn');
+            if (document.body.classList.contains('lang-kr')) {
+                btn.innerText = 'EN / KR';
             } else {
-                koElements.forEach(el => el.classList.add('lang-hidden'));
-                enElements.forEach(el => el.classList.remove('lang-hidden'));
+                btn.innerText = 'KR / EN';
             }
         }
 
-        // Scroll Reveal Animation
-        document.addEventListener('DOMContentLoaded', () => {
-            const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) entry.target.classList.add('active');
-                });
-            }, observerOptions);
-            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-        });
-
-        // Image Modal Logic
-        function openModal(src) {
-            const modal = document.getElementById('imageModal');
-            const img = document.getElementById('modalImage');
-            
-            modal.classList.remove('hidden');
-            img.src = src;
-            
-            // Small delay to allow display:block to apply before opacity transition
-            setTimeout(() => {
-                modal.classList.remove('opacity-0');
-                img.classList.remove('scale-95');
-                img.classList.add('scale-100');
-            }, 10);
-            
-            document.body.style.overflow = 'hidden'; // Prevent scrolling background
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+            menu.classList.toggle('flex');
+        }
+        function closeMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.add('hidden');
+            menu.classList.remove('flex');
         }
 
-        function closeModal() {
-            const modal = document.getElementById('imageModal');
-            const img = document.getElementById('modalImage');
-            
-            modal.classList.add('opacity-0');
-            img.classList.remove('scale-100');
-            img.classList.add('scale-95');
-            
-            setTimeout(() => {
-                modal.classList.add('hidden');
-                img.src = '';
-            }, 300);
-            
-            document.body.style.overflow = ''; // Restore scrolling
+        // Hero Slider Logic
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.hero-slide');
+        function nextSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
         }
+        setInterval(nextSlide, 5000); // Change slide every 5 seconds
 
-        // Close on Escape key
-        document.addEventListener('keydown', function(event) {
-            if (event.key === "Escape") {
-                closeModal();
-            }
-        });
+        // Scroll Animation Observer
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
     </script>
-
-</body></html>
+</body>
+</html>
