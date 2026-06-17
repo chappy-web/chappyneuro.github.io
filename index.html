@@ -541,18 +541,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="max-w-7xl mx-auto px-6">
             <!-- 파트너 로고 슬라이더 -->
             <div class="partner-slider relative overflow-hidden">
-                <!-- 무한 루프를 위해 동일한 로고 묶음을 두 번 반복합니다.
-                     파트너가 생기면 아래 첫 번째 묶음에 <img>를 추가하고,
-                     두 번째 묶음(복제본)에도 동일하게 붙여넣으면 끊김 없이 흐릅니다.
-                     로고는 h-12(세로 높이 통일) w-auto(가로 비율 유지)로 넣으세요. -->
                 <div class="partner-track">
                     <!-- 묶음 1 -->
                     <img src="https://www.ish.or.kr/data/builder/logo.png" alt="Partner" class="h-12 w-auto object-contain grayscale hover:grayscale-0 transition-all">
                     <img src="https://www.skku.edu/_res/skku//img/common/logo.png" alt="Partner" class="h-12 w-auto object-contain grayscale hover:grayscale-0 transition-all">
                     <img src="https://www.unist.ac.kr/_res/unist/unist/img/content/img-ui-down02-mo.png" alt="Partner" class="h-12 w-auto object-contain grayscale hover:grayscale-0 transition-all">
-                    <img src="https://centers.ibs.re.kr/img/cnir_en/contents/center_0105_02.JPG" alt="Partner" class="h-12 w-auto object-contain grayscale hover:grayscale-0 transition-all">
                     <img src="https://www.bu.ac.kr/sites/web/intro/assets/img/intro01_logo.png" alt="Partner" class="h-12 w-auto object-contain grayscale hover:grayscale-0 transition-all">
                     <img src="https://www.hanyang.ac.kr/documents/20122/371190995/Signature_lr_basic_kor.png/6c9628f8-fc7b-9c88-a181-1ee6ca6b5177?t=1776063515313&download=true" alt="Partner" class="h-12 w-auto object-contain grayscale hover:grayscale-0 transition-all">
+
+                    <!-- 묶음 2 (묶음 1과 동일하게 복제 / aria-hidden으로 스크린리더 중복 방지) -->
+                    <img src="https://www.ish.or.kr/data/builder/logo.png" alt="" aria-hidden="true" class="h-12 w-auto object-contain grayscale hover:grayscale-0 transition-all">
+                    <img src="https://www.skku.edu/_res/skku//img/common/logo.png" alt="" aria-hidden="true" class="h-12 w-auto object-contain grayscale hover:grayscale-0 transition-all">
+                    <img src="https://www.unist.ac.kr/_res/unist/unist/img/content/img-ui-down02-mo.png" alt="" aria-hidden="true" class="h-12 w-auto object-contain grayscale hover:grayscale-0 transition-all">
+                    <img src="https://www.bu.ac.kr/sites/web/intro/assets/img/intro01_logo.png" alt="" aria-hidden="true" class="h-12 w-auto object-contain grayscale hover:grayscale-0 transition-all">
+                    <img src="https://www.hanyang.ac.kr/documents/20122/371190995/Signature_lr_basic_kor.png/6c9628f8-fc7b-9c88-a181-1ee6ca6b5177?t=1776063515313&download=true" alt="" aria-hidden="true" class="h-12 w-auto object-contain grayscale hover:grayscale-0 transition-all">
                 </div>
             </div>
         </div>
