@@ -195,8 +195,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
             <!-- Logo -->
             <a href="/" class="text-xl tracking-tighter text-gray-900 font-medium z-50 flex items-center gap-2">
-  		      <img src="images/LatentBrain_logo_color.PNG" alt="LatentBrain" class="h-8 md:h-10 w-auto object-contain">
-  		      LATENTBRAIN
+  		<img src="images/LatentBrain_logo_color.PNG" alt="LatentBrain" class="h-8 md:h-10 w-auto object-contain">
+  		LATENTBRAIN
 	    </a>
 
             <!-- Desktop Menu -->
@@ -311,7 +311,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="flex justify-center mb-8 animate-on-scroll">
                 <img src="images/mindpilot_logo_F.png"
                      alt="LatentBrain Brand Logo"
-                     class="w-full max-w-md md:max-w-lg h-auto object-contain"
+                     class="max-h-600 w-auto object-contain"
                      onerror="this.parentElement.style.display='none';">
             </div>
 
@@ -532,7 +532,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
     </section>
 
-    <!-- Section 4: Team -->
+<!-- Section 4: Team -->
     <section id="team" class="py-24 bg-surface border-t border-gray-100">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-16 animate-on-scroll">
@@ -546,118 +546,105 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Member 1: 문현준 -->
-                <div class="group cursor-pointer animate-on-scroll delay-100">
-                    <div class="relative w-full aspect-[3/4] rounded-2xl overflow-hidden mb-5 bg-gray-200 shadow-sm hover:shadow-md transition-shadow">
-                        <!-- 이미지 (기본 흑백, 호버시 블러 처리) -->
-                        <img src="images/mhj_img.png" alt="Hyun-Jun Moon" class="w-full h-full object-cover grayscale transition-all duration-500 group-hover:blur-md group-hover:scale-105">
-                        
-                        <!-- 호버 시 나타나는 세부정보 오버레이 -->
-                        <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-center items-center p-6 text-white text-center">
-                            <div class="text-sm font-light space-y-3">
-                                <p class="text-brand-300 font-medium mb-1">Education</p>
-                                <p><span class="show-en">MBA, Hanyang Univ.</span><span class="show-kr">한양대 경영학석사</span></p>
-                                
-                                <div class="w-8 h-px bg-white/30 mx-auto my-3"></div>
-                                
-                                <p class="text-brand-300 font-medium mb-1">Experience</p>
-                                <p class="text-xs leading-relaxed">
-                                    <span class="show-en">JW Pharmaceutical, TmaxA&C</span>
-                                    <span class="show-kr">前 JW중외제약, TmaxA&C</span>
-                                </p>
-                                
-                                <div class="w-8 h-px bg-white/30 mx-auto my-3"></div>
-                                
-                                <p class="text-xs font-medium text-gray-200">
-                                    <span class="show-en">IR, Strategy, Marketing</span>
-                                    <span class="show-kr">투자유치, 경영전략, 마케팅</span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 기본 텍스트 (마우스가 없을 때 사진 아래 중앙 정렬) -->
-                    <div class="text-center">
-                        <h3 class="text-xl font-medium text-gray-900">
-                            <span class="show-en">Hyun-Jun Moon</span><span class="show-kr">문현준</span>
+            <!-- ============================================================ -->
+            <!-- [팀 카드] 배경 이미지 교체 방법                                -->
+            <!--  아래 각 카드의 <img src="..."> 경로만 바꾸면 됩니다.          -->
+            <!--  예) src="images/team_research.jpg"                          -->
+            <!--  · 이미지는 자동으로 흑백 + 어둡게 처리되어 글씨가 항상 보입니다 -->
+            <!--  · 이미지가 없으면 브랜드 그라데이션 배경이 대신 표시됩니다      -->
+            <!--  · 카드는 항상 1:1 정사각형으로 유지됩니다                     -->
+            <!-- ============================================================ -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+
+                <!-- Research -->
+                <div class="group relative aspect-square rounded-2xl overflow-hidden bg-gradient-brand shadow-sm hover:shadow-lg transition-shadow cursor-pointer animate-on-scroll">
+                    <img src="images/Research.png" alt=""
+                         class="absolute inset-0 w-full h-full object-cover grayscale brightness-50 transition-transform duration-700 group-hover:scale-105"
+                         onerror="this.style.display='none';">
+                    <div class="absolute inset-0 bg-black/40 group-hover:bg-black/75 transition-colors duration-500"></div>
+                    <div class="relative h-full flex flex-col justify-center items-center text-center p-6">
+                        <h3 class="text-2xl font-semibold text-white tracking-tight transition-transform duration-500 group-hover:-translate-y-2">
+                            Research
                         </h3>
-                        <p class="text-brand-500 text-sm font-semibold mt-1">Co-founder, CEO</p>
+                        <div class="w-10 h-px bg-white/40 my-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <p class="text-sm font-light leading-relaxed text-gray-100 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                            <span class="show-en">A team of AI and brain engineering experts researching healthier minds.</span>
+                            <span class="show-kr">AI, 뇌공학(뇌과학) 분야 전문가로 이루어져 사람들의 건강한 정신을 연구합니다.</span>
+                        </p>
                     </div>
                 </div>
 
-                <!-- Member 2: 김민기 -->
-                <div class="group cursor-pointer animate-on-scroll delay-200">
-                    <div class="relative w-full aspect-[3/4] rounded-2xl overflow-hidden mb-5 bg-gray-200 shadow-sm hover:shadow-md transition-shadow">
-                        <!-- 이미지 (기본 흑백, 호버시 블러 처리) -->
-                        <img src="images/mkk_img.png" alt="Min-Ki Kim" class="w-full h-full object-cover grayscale transition-all duration-500 group-hover:blur-md group-hover:scale-105">
-                        
-                        <!-- 호버 시 나타나는 세부정보 오버레이 -->
-                        <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-center items-center p-6 text-white text-center">
-                            <div class="text-sm font-light space-y-3">
-                                <p class="text-brand-300 font-medium mb-1">Education</p>
-                                <p><span class="show-en">Ph.D. (AI & Brain Eng), UNIST</span><span class="show-kr">UNIST 공학박사 (AI·뇌공학)</span></p>
-                                
-                                <div class="w-8 h-px bg-white/30 mx-auto my-3"></div>
-                                
-                                <p class="text-brand-300 font-medium mb-1">Experience</p>
-                                <p class="text-xs leading-relaxed">
-                                    <span class="show-en">Research Prof, Catholic Kwandong Univ.</span>
-                                    <span class="show-kr">前, 가톨릭관동대학교 연구교수</span>
-                                </p>
-                                
-                                <div class="w-8 h-px bg-white/30 mx-auto my-3"></div>
-                                
-                                <p class="text-xs font-medium text-gray-200">
-                                    <span class="show-en">AI engine dev, R&D</span>
-                                    <span class="show-kr">AI 엔진 개발, 기술 로드맵, R&D</span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 기본 텍스트 (마우스가 없을 때 사진 아래 중앙 정렬) -->
-                    <div class="text-center">
-                        <h3 class="text-xl font-medium text-gray-900">
-                            <span class="show-en">Min-Ki Kim</span><span class="show-kr">김민기</span>
+                <!-- Development -->
+                <div class="group relative aspect-square rounded-2xl overflow-hidden bg-gradient-brand shadow-sm hover:shadow-lg transition-shadow cursor-pointer animate-on-scroll delay-100">
+                    <img src="images/Development.png" alt=""
+                         class="absolute inset-0 w-full h-full object-cover grayscale brightness-50 transition-transform duration-700 group-hover:scale-105"
+                         onerror="this.style.display='none';">
+                    <div class="absolute inset-0 bg-black/40 group-hover:bg-black/75 transition-colors duration-500"></div>
+                    <div class="relative h-full flex flex-col justify-center items-center text-center p-6">
+                        <h3 class="text-2xl font-semibold text-white tracking-tight transition-transform duration-500 group-hover:-translate-y-2">
+                            Development
                         </h3>
-                        <p class="text-brand-500 text-sm font-semibold mt-1">Co-founder, CTO</p>
+                        <div class="w-10 h-px bg-white/40 my-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <p class="text-sm font-light leading-relaxed text-gray-100 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                            <span class="show-en">We build and refine our technology into solutions our customers find genuinely useful.</span>
+                            <span class="show-kr">고객이 유용하게 사용할 수 있는 솔루션으로 상품 개발하고 개선합니다.</span>
+                        </p>
                     </div>
                 </div>
 
-                <!-- Member 3: 김상훈 -->
-                <div class="group cursor-pointer animate-on-scroll delay-300">
-                    <div class="relative w-full aspect-[3/4] rounded-2xl overflow-hidden mb-5 bg-gray-200 shadow-sm hover:shadow-md transition-shadow">
-                        <!-- 이미지 (기본 흑백, 호버시 블러 처리) -->
-                        <img src="images/shk_img.png" alt="Sang-Hun Kim" class="w-full h-full object-cover grayscale transition-all duration-500 group-hover:blur-md group-hover:scale-105">
-                        
-                        <!-- 호버 시 나타나는 세부정보 오버레이 -->
-                        <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-center items-center p-6 text-white text-center">
-                            <div class="text-sm font-light space-y-3">
-                                <p class="text-brand-300 font-medium mb-1">Education</p>
-                                <p><span class="show-en">M.S. Eng, Sungkyunkwan Univ.</span><span class="show-kr">성균관대학교 공학석사</span></p>
-                                
-                                <div class="w-8 h-px bg-white/30 mx-auto my-3"></div>
-                                
-                                <p class="text-brand-300 font-medium mb-1">Experience</p>
-                                <p class="text-xs leading-relaxed">
-                                    <span class="show-en">Researcher, IBS Center for Neuroscience Imaging Research</span>
-                                    <span class="show-kr">IBS 뇌과학이미징연구단 연구원</span>
-                                </p>
-                                
-                                <div class="w-8 h-px bg-white/30 mx-auto my-3"></div>
-                                
-                                <p class="text-xs font-medium text-gray-200">
-                                    <span class="show-en">Product design, data pipeline</span>
-                                    <span class="show-kr">제품 설계, 데이터 파이프라인</span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 기본 텍스트 (마우스가 없을 때 사진 아래 중앙 정렬) -->
-                    <div class="text-center">
-                        <h3 class="text-xl font-medium text-gray-900">
-                            <span class="show-en">Sang-Hun Kim</span><span class="show-kr">김상훈</span>
+                <!-- Operations -->
+                <div class="group relative aspect-square rounded-2xl overflow-hidden bg-gradient-brand shadow-sm hover:shadow-lg transition-shadow cursor-pointer animate-on-scroll delay-200">
+                    <img src="images/Operations.png" alt=""
+                         class="absolute inset-0 w-full h-full object-cover grayscale brightness-50 transition-transform duration-700 group-hover:scale-105"
+                         onerror="this.style.display='none';">
+                    <div class="absolute inset-0 bg-black/40 group-hover:bg-black/75 transition-colors duration-500"></div>
+                    <div class="relative h-full flex flex-col justify-center items-center text-center p-6">
+                        <h3 class="text-2xl font-semibold text-white tracking-tight transition-transform duration-500 group-hover:-translate-y-2">
+                            Operations
                         </h3>
-                        <p class="text-brand-500 text-sm font-semibold mt-1">Co-founder, PO</p>
+                        <div class="w-10 h-px bg-white/40 my-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <p class="text-sm font-light leading-relaxed text-gray-100 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                            <span class="show-en">Sales and marketing operations grounded in hands-on IT and medical industry experience.</span>
+                            <span class="show-kr">IT, 메디칼 분야 경험을 바탕으로 한 세일즈와 마케팅을 운영 관리합니다.</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- C/S -->
+                <div class="group relative aspect-square rounded-2xl overflow-hidden bg-gradient-brand shadow-sm hover:shadow-lg transition-shadow cursor-pointer animate-on-scroll delay-300">
+                    <img src="images/CS.png" alt=""
+                         class="absolute inset-0 w-full h-full object-cover grayscale brightness-50 transition-transform duration-700 group-hover:scale-105"
+                         onerror="this.style.display='none';">
+                    <div class="absolute inset-0 bg-black/40 group-hover:bg-black/75 transition-colors duration-500"></div>
+                    <div class="relative h-full flex flex-col justify-center items-center text-center p-6">
+                        <h3 class="text-2xl font-semibold text-white tracking-tight transition-transform duration-500 group-hover:-translate-y-2">
+                            C/S
+                        </h3>
+                        <div class="w-10 h-px bg-white/40 my-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <p class="text-sm font-light leading-relaxed text-gray-100 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                            <span class="show-en">We gather customer difficulties and requests, always considering wider accessibility.</span>
+                            <span class="show-kr">고객의 불편함과 요구사항을 수집하고, 제품의 대중화를 고려합니다.</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- and, Our Adviser -->
+            <div class="flex flex-col items-center animate-on-scroll delay-200">
+                <div class="group relative aspect-square w-full max-w-xs rounded-2xl overflow-hidden bg-gradient-brand shadow-sm hover:shadow-lg transition-shadow cursor-pointer">
+                    <img src="images/Adviser.png" alt=""
+                         class="absolute inset-0 w-full h-full object-cover grayscale brightness-50 transition-transform duration-700 group-hover:scale-105"
+                         onerror="this.style.display='none';">
+                    <div class="absolute inset-0 bg-black/40 group-hover:bg-black/75 transition-colors duration-500"></div>
+                    <div class="relative h-full flex flex-col justify-center items-center text-center p-6">
+                        <h3 class="text-2xl font-semibold text-white tracking-tight transition-transform duration-500 group-hover:-translate-y-2">
+                            and, Our Adviser
+                        </h3>
+                        <div class="w-10 h-px bg-white/40 my-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <p class="text-sm font-light leading-relaxed text-gray-100 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                            <span class="show-en">Advisers in medicine, law, and tax/accounting help make LatentBrain stronger.</span>
+                            <span class="show-kr">의료, 법무, 세무/회계 전문가 그룹의 도움으로 레이턴트브레인을 더욱 견고하게 합니다.</span>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -780,10 +767,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
     </section>
 
-    <!-- Section 6: Contact & Footer -->
+<!-- Section 6: Contact & Footer -->
     <footer id="contact" class="bg-gray-900 text-white pt-24 pb-12 rounded-t-3xl md:mx-4 mt-12 animate-on-scroll">
         <div class="max-w-7xl mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-16 mb-20">
+
+                <!-- 왼쪽: 타이틀 + 버튼 + Contact Info -->
                 <div>
                     <h2 class="text-4xl font-semibold tracking-tight mb-4 title-underline left">
                         <span class="show-en">Get in touch</span><span class="show-kr">함께 시작하세요</span>
@@ -792,21 +781,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <span class="show-en">Interested in piloting MindPilot, investing, or partnering? Fill out the form below or reach out directly.</span>
                         <span class="show-kr">MindPilot 파일럿 도입, 투자, 협업에 관심이 있으시면 아래 양식을 작성하거나 직접 연락해 주세요.</span>
                     </p>
-                    <a href="https://forms.gle/xqDDmdzzLDkvvNtY9" target="_blank" class="inline-flex px-8 py-3.5 bg-gradient-brand text-white font-medium text-sm rounded-full transition-all hover:scale-105 active:scale-95 gap-2 items-center">
+                    <a href="https://forms.gle/xqDDmdzzLDkvvNtY9" target="_blank" rel="noopener" class="inline-flex px-8 py-3.5 bg-gradient-brand text-white font-medium text-sm rounded-full transition-all hover:scale-105 active:scale-95 gap-2 items-center">
                         <span class="show-en">Contact us Form</span><span class="show-kr">문의하기</span> <iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
                     </a>
-                </div>
 
-                <div class="grid grid-cols-1 gap-8">
-                    <div>
+                    <!-- Contact Info (버튼 아래로 이동) -->
+                    <div class="mt-12 pt-8 border-t border-gray-800">
                         <h4 class="text-sm font-medium mb-4 text-gray-300">Contact Info</h4>
                         <ul class="text-sm text-gray-400 space-y-4 font-light">
                             <li class="flex items-start gap-3">
-                                <iconify-icon icon="solar:letter-linear" class="text-xl mt-0.5"></iconify-icon>
-                                <span>latent@lat-brain.com</span>
+                                <iconify-icon icon="solar:letter-linear" class="text-xl mt-0.5 shrink-0"></iconify-icon>
+                                <a href="mailto:latent@lat-brain.com" class="hover:text-white transition-colors">latent@lat-brain.com</a>
                             </li>
                             <li class="flex items-start gap-3">
-                                <iconify-icon icon="solar:map-point-linear" class="text-xl mt-0.5"></iconify-icon>
+                                <iconify-icon icon="solar:map-point-linear" class="text-xl mt-0.5 shrink-0"></iconify-icon>
                                 <span>
                                     <span class="show-en">313, 1-9, Baekseokdaehak-ro, Dongnam-gu, Cheonan-si, Chungcheongnam-do, Republic of Korea</span>
                                     <span class="show-kr">충청남도 천안시 동남구 백석대학로 1-9, 백석대학교 학생복지관 313호</span>
@@ -815,17 +803,49 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         </ul>
                     </div>
                 </div>
+
+                <!-- ============================================================ -->
+                <!-- 오른쪽: 구글 지도                                             -->
+                <!--  ▶ 지도 교체 방법: 아래 iframe의 src="..." 안의 주소만 교체     -->
+                <!--    Google Maps → 회사 주소 검색 → 공유 → [지도 퍼가기] 탭     -->
+                <!--    → HTML 복사 → 그 안의 src 값만 가져와서 붙여넣기            -->
+                <!-- ============================================================ -->
+                <div class="rounded-2xl overflow-hidden shadow-lg h-[380px] md:h-full md:min-h-[420px] bg-gray-800">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m5!3m3!1m2!1s0x357b293bae6dfd4d%3A0xbc5ff298d7f07958!2z7LKc7JWI7IucIOyLoOyViOuPmSDrsLHshJ3rjIDtlZnqtZAg7ZWZ7IOd67O17KeA6rSA!5e0!3m2!1sko!2skr!4v1785830041587!5m2!1sko!2skr"
+                        class="w-full h-full border-0 grayscale-[30%] hover:grayscale-0 transition-all duration-500"
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"
+                        allowfullscreen
+                        title="LatentBrain Location"></iframe>
+                </div>
             </div>
 
             <div class="border-t border-gray-800 pt-12 flex flex-col gap-6 text-xs text-gray-500 font-light">
-                <p>
-                    <strong class="text-gray-300">
-                        <span class="show-en">Latent Brain Co., Ltd. | CEO: Hyun-Jun Moon</span>
-                        <span class="show-kr">레이턴트브레인 | 대표이사: 문현준</span>
-                    </strong>
-                </p>
+
+                <!-- 회사명 줄 + 오른쪽 끝 로고 -->
+                <div class="flex items-center justify-between gap-6 flex-wrap">
+                    <p>
+                        <strong class="text-gray-300">
+                            <span class="show-en">Latent Brain Co., Ltd. | CEO: Hyun-Jun Moon</span>
+                            <span class="show-kr">레이턴트브레인 | 대표: 문현준</span>
+                        </strong>
+                    </p>
+
+                    <!-- ============================================================ -->
+                    <!-- [푸터 로고] 밝은색(흰색) 로고 파일을 넣어주세요                 -->
+                    <!--  ▶ 경로 교체: src="images/파일명.png"                        -->
+                    <!--  ▶ 크기 조절: h-8(작게) / h-10 / h-12(크게)                  -->
+                    <!--  ▶ 파일이 없으면 자동으로 숨겨집니다                           -->
+                    <!-- ============================================================ -->
+                    <img src="images/LatentBrain_logo_W.PNG"
+                         alt="LatentBrain"
+                         class="h-8 md:h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity shrink-0"
+                         onerror="this.style.display='none';">
+                </div>
+
                 <p class="leading-relaxed">
-                    <span class="show-en">MindPilot is not a medical device. It is not intended to diagnose, treat, cure, or prevent any disease, and does not replace a physician’s clinical judgment. This service is software designed to support healthcare professionals’ workflow efficiency.</span>
+                    <span class="show-en">MindPilot is not a medical device. It is not intended to diagnose, treat, cure, or prevent any disease, and does not replace a physician's clinical judgment. This service is software designed to support healthcare professionals' workflow efficiency.</span>
                     <span class="show-kr">MindPilot은 의료기기가 아닙니다. 질병의 진단, 치료, 경감, 처치 또는 예방을 목적으로 하지 않으며, 의사의 임상적 판단을 대체하지 않습니다. 본 서비스는 의료진의 업무 효율을 지원하기 위한 소프트웨어입니다.</span>
                 </p>
             </div>
