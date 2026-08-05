@@ -788,7 +788,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     </p>
                     <!-- ▼ 문의 버튼: 클릭 시 이메일 문의 폼(모달)이 열립니다 -->
                     <button type="button" onclick="openContactModal()" class="inline-flex px-8 py-3.5 bg-gradient-brand text-white font-medium text-sm rounded-full transition-all hover:scale-105 active:scale-95 gap-2 items-center">
-                        <span class="show-en">Contact Us</span><span class="show-kr">문의하기</span> <iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
+                        <span class="show-en">Contact us Form</span><span class="show-kr">문의하기</span> <iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
                     </button>
 
                     <!-- Contact Info (버튼 아래로 이동) -->
@@ -909,10 +909,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- ============================================================
      문의 폼 모달 (이메일 수신: moonhj@lat-brain.com)
      ============================================================
-     ▶ 설정 완료 — Web3Forms Access Key 적용됨 (추가 작업 없음)
-       - 수신 메일: moonhj@lat-brain.com
-       - 수신 주소를 바꾸려면 web3forms.com 에서 새 Access Key 를 발급받아
-         아래 name="access_key" 의 value 값만 교체하세요.
+     ▶ Google Apps Script 연동 방식 (완전 무료, 외부 서비스 불필요)
+       1. contact-form.gs 파일의 안내대로 Apps Script 웹앱을 배포
+       2. 배포 후 받은 "웹 앱 URL" 을 아래 CONTACT_ENDPOINT 값에 붙여넣기
+       ※ 문의 내용은 구글 시트에 자동 저장되고, 방문자에게 접수 확인
+          메일이 자동 발송됩니다.
      ※ 서버 없이 동작하며, 제출 내용이 moonhj@lat-brain.com 으로 발송됩니다.
      ※ 무료 플랜 월 250건. 개인정보(문의 내용)는 Web3Forms 서버를 경유합니다.
      ============================================================ -->
@@ -934,10 +935,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
 
     <form id="contactForm" class="px-7 pb-7 pt-4 space-y-4">
-      <!-- Web3Forms 설정값 -->
-      <input type="hidden" name="access_key" value="b4e6860d-098a-4630-b887-8036705d65c5">
+      <!-- 메일 제목 (필요 시 문구만 수정) -->
       <input type="hidden" name="subject" value="[LatentBrain 홈페이지] 새 문의가 도착했습니다">
-      <input type="hidden" name="from_name" value="LatentBrain Website">
       <!-- 스팸봇 차단용 (사람 눈에 보이지 않음) -->
       <input type="checkbox" name="botcheck" class="hidden" style="display:none" tabindex="-1" autocomplete="off">
 
@@ -1025,6 +1024,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     }
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeContactModal(); });
 
+    /* ============================================================
+       ▼ Apps Script 웹 앱 URL — 배포 후 아래 따옴표 안만 교체하세요
+          예) https://script.google.com/macros/s/AKfycb..../exec
+       ============================================================ */
+    const CONTACT_ENDPOINT = "https://script.google.com/macros/s/AKfycbxlsNsX-sfOwHsdxngLxI8YpYCXWmkJr87GDoKAYPZYvLBRYTxlqQgxKkxjNbQyYwCs/exec";
+
     document.getElementById('contactForm').addEventListener('submit', async function (e) {
         e.preventDefault();
         const isKr  = document.body.classList.contains('lang-kr');
@@ -1033,25 +1038,26 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
         btn.disabled = true;
         btn.style.opacity = '0.6';
+        msgEl.classList.remove('hidden');
         msgEl.className = 'text-sm text-center text-gray-500';
         msgEl.textContent = isKr ? '전송 중입니다...' : 'Sending...';
 
         try {
-            const res = await fetch('https://api.web3forms.com/submit', {
-                method: 'POST',
-                headers: { 'Accept': 'application/json' },
-                body: new FormData(this)
-            });
+            // URLSearchParams 사용 = 사전요청(preflight) 없이 전송되어 CORS 문제 방지
+            const params = new URLSearchParams();
+            new FormData(this).forEach((v, k) => params.append(k, v));
+
+            const res  = await fetch(CONTACT_ENDPOINT, { method: 'POST', body: params });
             const data = await res.json();
 
-            if (data.success) {
+            if (data.result === 'success') {
                 msgEl.className = 'text-sm text-center text-green-600';
                 msgEl.textContent = isKr
-                    ? '문의가 정상적으로 접수되었습니다. 감사합니다!'
-                    : 'Your message has been sent. Thank you!';
+                    ? '문의가 접수되었습니다. 입력하신 메일로 확인 메일을 보내드렸습니다.'
+                    : 'Your message has been received. A confirmation email is on its way.';
                 this.reset();
                 if (window.dataLayer) window.dataLayer.push({ event: 'contact_form_submit' });
-                setTimeout(() => { closeContactModal(); msgEl.classList.add('hidden'); }, 2500);
+                setTimeout(() => { closeContactModal(); msgEl.classList.add('hidden'); }, 3000);
             } else {
                 throw new Error(data.message || 'failed');
             }
