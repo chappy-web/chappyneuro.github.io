@@ -782,9 +782,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <span class="show-en">Interested in piloting MindPilot, investing, or partnering? Fill out the form below or reach out directly.</span>
                         <span class="show-kr">MindPilot 파일럿 도입, 투자, 협업에 관심이 있으시면 아래 양식을 작성하거나 직접 연락해 주세요.</span>
                     </p>
-                    <a href="https://forms.gle/xqDDmdzzLDkvvNtY9" target="_blank" rel="noopener" class="inline-flex px-8 py-3.5 bg-gradient-brand text-white font-medium text-sm rounded-full transition-all hover:scale-105 active:scale-95 gap-2 items-center">
-                        <span class="show-en">Contact us Form</span><span class="show-kr">문의하기</span> <iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
-                    </a>
+                    <!-- ▼ 문의 버튼: 클릭 시 이메일 문의 폼(모달)이 열립니다 -->
+                    <button type="button" onclick="openContactModal()" class="inline-flex px-8 py-3.5 bg-gradient-brand text-white font-medium text-sm rounded-full transition-all hover:scale-105 active:scale-95 gap-2 items-center">
+                        <span class="show-en">Contact Us</span><span class="show-kr">문의하기</span> <iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
+                    </button>
 
                     <!-- Contact Info (버튼 아래로 이동) -->
                     <div class="mt-12 pt-8 border-t border-gray-800">
@@ -900,5 +901,166 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
         document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
     </script>
+
+<!-- ============================================================
+     문의 폼 모달 (이메일 수신: moonhj@lat-brain.com)
+     ------------------------------------------------------------
+     ▶ 설정 완료 — Web3Forms Access Key 적용됨 (추가 작업 없음)
+       - 수신 메일: moonhj@lat-brain.com
+       - 수신 주소를 바꾸려면 web3forms.com 에서 새 Access Key 를 발급받아
+         아래 name="access_key" 의 value 값만 교체하세요.
+     ※ 서버 없이 동작하며, 제출 내용이 moonhj@lat-brain.com 으로 발송됩니다.
+     ※ 무료 플랜 월 250건. 개인정보(문의 내용)는 Web3Forms 서버를 경유합니다.
+     ============================================================ -->
+<div id="contactModal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-black/60 backdrop-blur-sm" onclick="if(event.target===this) closeContactModal()">
+  <div class="bg-white w-full max-w-lg rounded-2xl shadow-2xl max-h-[90vh] overflow-y-auto">
+    <div class="flex items-start justify-between px-7 pt-7 pb-2">
+      <div>
+        <h3 class="text-2xl font-semibold text-gray-900 tracking-tight">
+          <span class="show-en">Contact us</span><span class="show-kr">문의하기</span>
+        </h3>
+        <p class="text-sm text-gray-500 font-light mt-1">
+          <span class="show-en">We usually reply within 1–2 business days.</span>
+          <span class="show-kr">영업일 기준 1~2일 이내에 회신드립니다.</span>
+        </p>
+      </div>
+      <button type="button" onclick="closeContactModal()" aria-label="Close" class="text-gray-400 hover:text-gray-900 text-2xl leading-none shrink-0 mt-1">
+        <iconify-icon icon="solar:close-circle-linear"></iconify-icon>
+      </button>
+    </div>
+
+    <form id="contactForm" class="px-7 pb-7 pt-4 space-y-4">
+      <!-- Web3Forms 설정값 -->
+      <input type="hidden" name="access_key" value="b4e6860d-098a-4630-b887-8036705d65c5">
+      <input type="hidden" name="subject" value="[LatentBrain 홈페이지] 새 문의가 도착했습니다">
+      <input type="hidden" name="from_name" value="LatentBrain Website">
+      <!-- 스팸봇 차단용 (사람 눈에 보이지 않음) -->
+      <input type="checkbox" name="botcheck" class="hidden" style="display:none" tabindex="-1" autocomplete="off">
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1.5">
+          <span class="show-en">Name</span><span class="show-kr">이름</span> <span class="text-red-500">*</span>
+        </label>
+        <input type="text" name="name" required
+               class="w-full px-4 py-2.5 border border-gray-300 rounded-lg text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#1E4BFF]/40 focus:border-[#1E4BFF]">
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1.5">
+          <span class="show-en">Company / Organization</span><span class="show-kr">소속(기관·회사명)</span>
+        </label>
+        <input type="text" name="company"
+               class="w-full px-4 py-2.5 border border-gray-300 rounded-lg text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#1E4BFF]/40 focus:border-[#1E4BFF]">
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1.5">
+          <span class="show-en">Email</span><span class="show-kr">이메일</span> <span class="text-red-500">*</span>
+        </label>
+        <input type="email" name="email" required
+               class="w-full px-4 py-2.5 border border-gray-300 rounded-lg text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#1E4BFF]/40 focus:border-[#1E4BFF]">
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1.5">
+          <span class="show-en">Inquiry type</span><span class="show-kr">문의 유형</span>
+        </label>
+        <select name="inquiry_type"
+                class="w-full px-4 py-2.5 border border-gray-300 rounded-lg text-sm text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-[#1E4BFF]/40 focus:border-[#1E4BFF]">
+          <option>파일럿 도입 / Pilot</option>
+          <option>투자 / Investment</option>
+          <option>협업·제휴 / Partnership</option>
+          <option>채용 / Careers</option>
+          <option>기타 / Other</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1.5">
+          <span class="show-en">Message</span><span class="show-kr">문의 내용</span> <span class="text-red-500">*</span>
+        </label>
+        <textarea name="message" rows="4" required
+                  class="w-full px-4 py-2.5 border border-gray-300 rounded-lg text-sm text-gray-900 resize-none focus:outline-none focus:ring-2 focus:ring-[#1E4BFF]/40 focus:border-[#1E4BFF]"></textarea>
+      </div>
+
+      <label class="flex items-start gap-2 text-xs text-gray-500 font-light leading-relaxed">
+        <input type="checkbox" required class="mt-0.5 shrink-0">
+        <span>
+          <span class="show-en">I agree to the collection of my name and email for the purpose of responding to this inquiry.</span>
+          <span class="show-kr">문의 응대 목적의 개인정보(이름·이메일) 수집·이용에 동의합니다.</span>
+        </span>
+      </label>
+
+      <button type="submit" id="contactSubmitBtn"
+              class="w-full py-3.5 bg-gradient-brand text-white font-medium text-sm rounded-full transition-all hover:scale-[1.02] active:scale-95 disabled:opacity-60 disabled:hover:scale-100">
+        <span class="show-en">Send message</span><span class="show-kr">보내기</span>
+      </button>
+
+      <p id="contactFormMsg" class="text-sm text-center hidden"></p>
+
+      <p class="text-xs text-gray-400 text-center font-light pt-1">
+        <span class="show-en">Or email us directly at</span><span class="show-kr">또는 직접 메일 보내기</span>
+        <a href="mailto:moonhj@lat-brain.com" class="underline hover:text-gray-700">moonhj@lat-brain.com</a>
+      </p>
+    </form>
+  </div>
+</div>
+
+<script>
+    function openContactModal() {
+        const m = document.getElementById('contactModal');
+        m.classList.remove('hidden');
+        m.classList.add('flex');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeContactModal() {
+        const m = document.getElementById('contactModal');
+        m.classList.add('hidden');
+        m.classList.remove('flex');
+        document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeContactModal(); });
+
+    document.getElementById('contactForm').addEventListener('submit', async function (e) {
+        e.preventDefault();
+        const isKr  = document.body.classList.contains('lang-kr');
+        const btn   = document.getElementById('contactSubmitBtn');
+        const msgEl = document.getElementById('contactFormMsg');
+
+        btn.disabled = true;
+        btn.style.opacity = '0.6';
+        msgEl.className = 'text-sm text-center text-gray-500';
+        msgEl.textContent = isKr ? '전송 중입니다...' : 'Sending...';
+
+        try {
+            const res = await fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                headers: { 'Accept': 'application/json' },
+                body: new FormData(this)
+            });
+            const data = await res.json();
+
+            if (data.success) {
+                msgEl.className = 'text-sm text-center text-green-600';
+                msgEl.textContent = isKr
+                    ? '문의가 정상적으로 접수되었습니다. 감사합니다!'
+                    : 'Your message has been sent. Thank you!';
+                this.reset();
+                if (window.dataLayer) window.dataLayer.push({ event: 'contact_form_submit' });
+                setTimeout(() => { closeContactModal(); msgEl.classList.add('hidden'); }, 2500);
+            } else {
+                throw new Error(data.message || 'failed');
+            }
+        } catch (err) {
+            msgEl.className = 'text-sm text-center text-red-600';
+            msgEl.textContent = isKr
+                ? '전송에 실패했습니다. moonhj@lat-brain.com 으로 직접 메일 부탁드립니다.'
+                : 'Sending failed. Please email us at moonhj@lat-brain.com.';
+        } finally {
+            btn.disabled = false;
+            btn.style.opacity = '';
+        }
+    });
+</script>
 </body>
 </html>
