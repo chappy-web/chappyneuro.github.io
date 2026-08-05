@@ -209,14 +209,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <a href="#contact" class="hover:text-black transition-colors"><span class="show-en">Contact</span><span class="show-kr">문의</span></a>
             </div>
 
-            <!-- Lang Toggle & CTA -->
-            <div class="flex items-center gap-4">
+            <!-- Lang Toggle (최우측) -->
+            <div class="flex items-center gap-4 ml-auto md:ml-0">
                 <button onclick="toggleLang()" id="langToggleBtn" class="text-sm font-medium hover:text-black transition-colors border border-gray-200 px-3 py-1.5 rounded-full bg-white">
                     KR / EN
                 </button>
+                <!-- [숨김 처리] Get Started 버튼 : 다시 표시하려면 이 줄과 아래 닫는 주석 줄만 삭제하세요
                 <a href="#contact" class="hidden md:inline-flex px-5 py-2.5 bg-gradient-brand text-white text-xs font-medium rounded-full transition-all hover:scale-105 active:scale-95 tracking-wide">
                     <span class="show-en">Get Started</span><span class="show-kr">시작하기</span>
                 </a>
+                -->
                 <!-- 모바일 햄버거 버튼 -->
                 <button onclick="toggleMobileMenu()" id="mobileMenuBtn" class="md:hidden text-gray-900 text-2xl flex items-center" aria-label="Menu">
                     <iconify-icon icon="solar:hamburger-menu-linear"></iconify-icon>
@@ -232,9 +234,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <a href="#team" onclick="closeMobileMenu()" class="block py-2 hover:text-black transition-colors"><span class="show-en">Team</span><span class="show-kr">팀</span></a>
             <a href="#milestone" onclick="closeMobileMenu()" class="block py-2 hover:text-black transition-colors"><span class="show-en">Milestone</span><span class="show-kr">마일스톤</span></a>
             <a href="#contact" onclick="closeMobileMenu()" class="block py-2 hover:text-black transition-colors"><span class="show-en">Contact</span><span class="show-kr">문의</span></a>
+            <!-- [숨김 처리] 모바일 메뉴의 Get Started 버튼 : 다시 표시하려면 이 줄과 아래 닫는 주석 줄만 삭제하세요
             <a href="#contact" onclick="closeMobileMenu()" class="mt-3 inline-flex px-5 py-2.5 bg-gradient-brand text-white text-xs font-medium rounded-full justify-center">
                 <span class="show-en">Get Started</span><span class="show-kr">시작하기</span>
             </a>
+            -->
         </div>
     </nav>
 
@@ -784,7 +788,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     </p>
                     <!-- ▼ 문의 버튼: 클릭 시 이메일 문의 폼(모달)이 열립니다 -->
                     <button type="button" onclick="openContactModal()" class="inline-flex px-8 py-3.5 bg-gradient-brand text-white font-medium text-sm rounded-full transition-all hover:scale-105 active:scale-95 gap-2 items-center">
-                        <span class="show-en">Contact Us</span><span class="show-kr">문의하기</span> <iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
+                        <span class="show-en">Contact us Form</span><span class="show-kr">문의하기</span> <iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
                     </button>
 
                     <!-- Contact Info (버튼 아래로 이동) -->
@@ -904,7 +908,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <!-- ============================================================
      문의 폼 모달 (이메일 수신: moonhj@lat-brain.com)
-     ------------------------------------------------------------
+     ============================================================
      ▶ 설정 완료 — Web3Forms Access Key 적용됨 (추가 작업 없음)
        - 수신 메일: moonhj@lat-brain.com
        - 수신 주소를 바꾸려면 web3forms.com 에서 새 Access Key 를 발급받아
